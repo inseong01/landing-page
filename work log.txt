@@ -31,6 +31,7 @@
         16  0.75     0.5        white           500     0.5        
         20  0        0          white           1000    0        
 
+      -> 테스트 변경 
       -> <Sky /> 완전 검은색 안 됨, sunPosition 설정 필요, 수치 값 조정
               sunPosition | rayleigh | mieCoefficient | turbidity
       - 00~04: [0, 0, 0]    0         0                 2
@@ -40,7 +41,47 @@
       - 16~20: [5, -5, 5]   0.8       0.006             4
       - 20~24: [0, 0, 0]    0         0                 2
 
-      -> jest 테스트 필요
+      -> jest 테스트  (v)
 
 
-<--  하늘 회전 애니메이션 끊김 오류, jest 테스트, 섹션 디자인 -->
+25.4.4.
+  - 하늘 회전 애니메이션 끊김 오류 수정
+    - 문제: 구름 무작위 값 재생성
+    - 원인: context value(useMemo 의존성 원인), 업데이트 될 때 컴포넌트 내 객체 생성 코드 재실행 됨 
+
+      useEffect 분석
+      1. useEffect(() => {}, [])는 마운트 되었을 때만 동작, 이후 업데이트는 동작 안 함, 
+      2. useEffect는 마운트/업데이트/언마운트 주기 가짐, 
+      3. 업데이트 주기에서 상태가 변하면 리렌더링 유발(state, props, context)
+      4. 리렌더링되면 useEffect 주기 다시 실행
+
+      context 분석
+      1. value 값 업데이트하여 리렌더링 유발, 마운트 아님, 업데이트 주기 해당
+
+      useMemo 분석
+      1. 의존성이 변경되면 함수 재실행
+      2. 이전과 동일한 반환값이어도 새로운 참조로 값 메모이제이션
+
+    - 해결: useMemo 의존성 값 수정 - context 업데이트 방지, 구름 무작위 생성 값 useRef 적용 - 사이드 이펙트 방지
+
+  - 시간 함수 테스트 케이스 작성
+    - 유닛 테스트: 개별 함수 작성
+    - 통합 테스트: 경계값 테스트 작성 
+
+  - 최적화
+    - useFrame 
+      구름 회전/이동 연산 개선: 부동소수점 -> 소수점 4자리 반올림
+
+    - 배너 렌더링
+      BannerBackground: 1
+      BackgroundMiddleText: 5
+      BackgroundClouds/SkyStars: 5
+
+      BackgroundMiddleText: 기본적으로 3번, <Text3D> 원인
+      BackgroundClouds: 기본적으로 3번, <Clouds> 원인
+      -> <mesh>보다 Threejs 확장 라이브러리 컴포넌트가 렌더링 유발 
+
+      해결: front, back 콘텐츠 컴포넌트 분리하여 <Suspense> 제거하여
+      BackgroundClouds 렌더링 1회 줄임 이하 동일
+
+<-- 섹션 디자인 -->

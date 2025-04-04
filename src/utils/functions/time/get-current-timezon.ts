@@ -6,7 +6,17 @@ export const EVENING = 'evening';
 export const NIGHT = 'night';
 
 /**
- * midnight: 0\~4, dawn: 4\~8, morning: 8\~12, afternoon: 12\~16, evening: 16\~20, night: 20\~24
+ * midnight: 0\~4
+ *
+ * dawn: 4\~8
+ *
+ * morning: 8\~12
+ *
+ * afternoon: 12\~16
+ *
+ * evening: 16\~20
+ *
+ * night: 20\~24
  *
  * @param hour 현재 시간
  * @returns 현재 시간 범위

@@ -10,11 +10,12 @@ import { setSunTurbidity } from '../../../utils/functions/time/set-sun-turbidity
 
 export default function BackgroundClouds() {
   const groupRef = useRef<THREE.Group>(null);
-  const initialPosition = new THREE.Vector3();
+  const initialPosition = useRef(new THREE.Vector3());
+  const precisionFix = (num: number) => Math.round(num * 10000) / 10000;
 
   useEffect(() => {
     if (groupRef.current) {
-      initialPosition.copy(groupRef.current.position);
+      initialPosition.current.copy(groupRef.current.position);
     }
   }, []);
 
@@ -22,23 +23,26 @@ export default function BackgroundClouds() {
     if (!groupRef.current) return;
 
     // Three.js의 시간 경과 값
-    const t = state.clock.getElapsedTime();
+    const t = precisionFix(state.clock.getElapsedTime());
 
     // 회전 속도
     groupRef.current.rotation.y += 0.0002;
 
     // 원형 궤도 따라 이동
-    const radius = 10;
-    groupRef.current.position.x = initialPosition.x + Math.cos(t * 0.1) * radius;
-    groupRef.current.position.z = initialPosition.z + Math.sin(t * 0.1) * radius;
+    const radius = 1;
+    const cosValue = precisionFix(Math.cos(t * 0.1));
+    const sinValue = precisionFix(Math.sin(t * 0.1));
+    groupRef.current.position.x = initialPosition.current.x + cosValue * radius;
+    groupRef.current.position.z = initialPosition.current.z + sinValue * radius;
   }
 
   useFrame(cloudMovementEffect);
 
   const betweenAmount = 500;
   const cloudIntensity = 500;
-  const randomValue = Math.random();
-  const cloudPatternSeed = randomValue >= 0.3 ? randomValue : 0.3;
+
+  const randomValue = useRef(precisionFix(Math.random()));
+  const cloudPatternSeed = randomValue.current >= 0.3 ? randomValue.current : 0.3;
 
   const timezone = useContext(TimezoneContext);
   const rayleighValue = setSunRayleigh(timezone);
