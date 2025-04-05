@@ -7,6 +7,8 @@ import { TimezoneContext } from '../../../context/context-current-time';
 import { setSunRayleigh } from '../../../utils/functions/time/set-sun-rayleigh';
 import { setSunPosition } from '../../../utils/functions/time/set-sun-position';
 import { setSunTurbidity } from '../../../utils/functions/time/set-sun-turbidity';
+import { Sky as SkyImpl } from 'three-stdlib';
+import { getCurrnetHourTimezone } from '../../../utils/functions/time/get-current-timezon';
 
 export default function BackgroundClouds() {
   const groupRef = useRef<THREE.Group>(null);
@@ -44,20 +46,45 @@ export default function BackgroundClouds() {
   const randomValue = useRef(precisionFix(Math.random()));
   const cloudPatternSeed = randomValue.current >= 0.3 ? randomValue.current : 0.3;
 
+  const skyRef = useRef<SkyImpl>(null);
   const timezone = useContext(TimezoneContext);
-  const rayleighValue = setSunRayleigh(timezone);
   const sunPositions = setSunPosition(timezone);
+  const rayleighValue = setSunRayleigh(timezone);
   const turbidityValue = setSunTurbidity(timezone);
+  const currentSunRef = useRef(new THREE.Vector3(...sunPositions));
+
+  function skyPropsChangeEffect(state: RootState) {
+    if (!skyRef.current) return;
+
+    // 기준값: 현재 시간 범위 값
+    // 변경값: 다음 시간 범위 값
+    // 현재값: 기준값이 일정 값과 더해진 값, 변경값을 초과할 수 없음
+    // 해당 시간이 되면 변하도록 적용
+
+    const currentHour = new Date().getHours();
+    const nextTimezone = getCurrnetHourTimezone(currentHour + 4);
+    const nextSunVec = new THREE.Vector3(...setSunPosition(nextTimezone));
+
+    currentSunRef.current.lerp(nextSunVec, 0.05);
+    skyRef.current.material.uniforms.sunPosition.value.copy(currentSunRef.current);
+
+    // rayleigh 보간
+
+    // turbidity 보간
+  }
+
+  useEffect(() => {
+    if (skyRef.current) {
+      skyRef.current.material.uniforms.sunPosition.value.copy(new THREE.Vector3(...sunPositions));
+    }
+  }, []);
+
+  useFrame(skyPropsChangeEffect);
 
   return (
     <group ref={groupRef}>
       <SkyStars />
-      <Sky
-        sunPosition={sunPositions}
-        rayleigh={rayleighValue}
-        turbidity={turbidityValue}
-        distance={5000}
-      />
+      <Sky ref={skyRef} rayleigh={rayleighValue} turbidity={turbidityValue} distance={5000} />
       <Clouds material={THREE.MeshStandardMaterial} range={50}>
         <Cloud
           concentrate="inside"

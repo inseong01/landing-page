@@ -1,5 +1,5 @@
-import { ReactThreeFiber } from '@react-three/fiber';
 import { AFTERNOON, DAWN, EVENING, MIDNIGHT, MORNING, NIGHT } from './get-current-timezon';
+import * as THREE from 'three';
 
 /**
  * 해 위치 좌표 반환
@@ -7,28 +7,38 @@ import { AFTERNOON, DAWN, EVENING, MIDNIGHT, MORNING, NIGHT } from './get-curren
  * @param timezone 현재 시간 범위
  * @returns 해 위치 좌표
  */
-export function setSunPosition(timezone: string): ReactThreeFiber.Vector3 {
+export function setSunPosition(timezone: string) {
+  let result = [];
+
   switch (timezone) {
     case MIDNIGHT: {
-      return [0, 0, 0];
+      result = [0, 0, 0];
+      break;
     }
     case DAWN: {
-      return [3, 0.1, 0];
+      result = [3, 0.1, 0];
+      break;
     }
     case MORNING: {
-      return [5, 3, 0];
+      result = [5, 3, 0];
+      break;
     }
     case AFTERNOON: {
-      return [0, 3, 5];
+      result = [0, 3, 5];
+      break;
     }
     case EVENING: {
-      return [-3, 0.1, 0];
+      result = [-3, 0.1, 0];
+      break;
     }
     case NIGHT: {
-      return [0, 0, 0];
+      result = [0, 0, 0];
+      break;
     }
     default: {
       throw new Error('Timezone error, timezone is unavaliable');
     }
   }
+
+  return new THREE.Vector3(...result);
 }

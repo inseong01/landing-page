@@ -23,7 +23,7 @@ export default function BannerBackground() {
   }, []);
 
   const intensity = setAmbientLightIntensity(currentTimezone);
-  console.log('BannerBackground render');
+
   return (
     <TimezoneContext.Provider value={currentTimezone}>
       <Canvas shadows camera={{ position: [0, -150, 0], fov: 50, zoom: 1 }}>
