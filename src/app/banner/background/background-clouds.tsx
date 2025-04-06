@@ -1,13 +1,13 @@
 import { Cloud, Clouds, Sky, Stars } from '@react-three/drei';
 import { RootState, useFrame } from '@react-three/fiber';
 import { useContext, useEffect, useRef } from 'react';
+import { Sky as SkyImpl } from 'three-stdlib';
 import * as THREE from 'three';
 import { setStarAmounts } from '../../../utils/functions/time/set-star-amounts';
 import { TimezoneContext } from '../../../context/context-current-time';
 import { setSunRayleigh } from '../../../utils/functions/time/set-sun-rayleigh';
 import { setSunPosition } from '../../../utils/functions/time/set-sun-position';
 import { setSunTurbidity } from '../../../utils/functions/time/set-sun-turbidity';
-import { Sky as SkyImpl } from 'three-stdlib';
 import { getCurrnetHourTimezone } from '../../../utils/functions/time/get-current-timezon';
 
 export default function BackgroundClouds() {
@@ -15,12 +15,7 @@ export default function BackgroundClouds() {
   const initialPosition = useRef(new THREE.Vector3());
   const precisionFix = (num: number) => Math.round(num * 10000) / 10000;
 
-  useEffect(() => {
-    if (groupRef.current) {
-      initialPosition.current.copy(groupRef.current.position);
-    }
-  }, []);
-
+  /* animation 1 */
   function cloudMovementEffect(state: RootState) {
     if (!groupRef.current) return;
 
@@ -38,53 +33,71 @@ export default function BackgroundClouds() {
     groupRef.current.position.z = initialPosition.current.z + sinValue * radius;
   }
 
-  useFrame(cloudMovementEffect);
-
+  /* cloud */
   const betweenAmount = 500;
   const cloudIntensity = 500;
-
   const randomValue = useRef(precisionFix(Math.random()));
   const cloudPatternSeed = randomValue.current >= 0.3 ? randomValue.current : 0.3;
 
+  /* sky */
   const skyRef = useRef<SkyImpl>(null);
   const timezone = useContext(TimezoneContext);
-  const sunPositions = setSunPosition(timezone);
+  const sunPositionsValue = setSunPosition(timezone);
   const rayleighValue = setSunRayleigh(timezone);
   const turbidityValue = setSunTurbidity(timezone);
-  const currentSunRef = useRef(new THREE.Vector3(...sunPositions));
 
-  function skyPropsChangeEffect(state: RootState) {
+  /* animation 2 */
+  function skyPropsChangeEffect() {
     if (!skyRef.current) return;
 
-    // 기준값: 현재 시간 범위 값
-    // 변경값: 다음 시간 범위 값
-    // 현재값: 기준값이 일정 값과 더해진 값, 변경값을 초과할 수 없음
-    // 해당 시간이 되면 변하도록 적용
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinutes = now.getMinutes();
+    const isOneHourBeforeTimezoneChange = [3, 7, 11, 15, 19, 23].includes(currentHour);
 
-    const currentHour = new Date().getHours();
-    const nextTimezone = getCurrnetHourTimezone(currentHour + 4);
-    const nextSunVec = new THREE.Vector3(...setSunPosition(nextTimezone));
+    if (isOneHourBeforeTimezoneChange && currentMinutes !== 59) return;
 
-    currentSunRef.current.lerp(nextSunVec, 0.05);
-    skyRef.current.material.uniforms.sunPosition.value.copy(currentSunRef.current);
+    const nextTimezone = getCurrnetHourTimezone(currentHour + 1);
+    const nextSunPositionsValue = setSunPosition(nextTimezone);
+    const isSameSunPosition = sunPositionsValue.equals(nextSunPositionsValue);
 
-    // rayleigh 보간
+    if (isSameSunPosition) return;
 
-    // turbidity 보간
+    const uniforms = skyRef.current.material.uniforms;
+    uniforms.sunPosition.value.lerp(nextSunPositionsValue, 0.01);
+
+    const nextRayleighValue = setSunRayleigh(timezone);
+    uniforms.rayleigh.value = THREE.MathUtils.lerp(
+      uniforms.rayleigh.value,
+      nextRayleighValue,
+      0.01
+    );
   }
 
   useEffect(() => {
+    if (groupRef.current) {
+      initialPosition.current.copy(groupRef.current.position);
+    }
+
     if (skyRef.current) {
-      skyRef.current.material.uniforms.sunPosition.value.copy(new THREE.Vector3(...sunPositions));
+      const uniforms = skyRef.current.material.uniforms;
+      uniforms.sunPosition.value.copy(sunPositionsValue);
+      uniforms.rayleigh.value = rayleighValue;
     }
   }, []);
 
-  useFrame(skyPropsChangeEffect);
+  /* animation collector */
+  function skyAnimation(state: RootState) {
+    cloudMovementEffect(state);
+    skyPropsChangeEffect();
+  }
+
+  useFrame(skyAnimation);
 
   return (
     <group ref={groupRef}>
       <SkyStars />
-      <Sky ref={skyRef} rayleigh={rayleighValue} turbidity={turbidityValue} distance={5000} />
+      <Sky ref={skyRef} turbidity={turbidityValue} distance={5000} />
       <Clouds material={THREE.MeshStandardMaterial} range={50}>
         <Cloud
           concentrate="inside"

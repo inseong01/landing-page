@@ -84,7 +84,7 @@
       해결: front, back 콘텐츠 컴포넌트 분리하여 <Suspense> 제거하여
       BackgroundClouds 렌더링 1회 줄임 이하 동일
 
-25.04.05.
+25.4.5.
   - 시간대 별 하늘 상태 애니메이션 작업
     useFrame 내부 해 위치 변화 함수 작성
 
@@ -92,4 +92,20 @@
     -> Drei 컴포넌트는 THREE.js 객체로 매핑되어 있어 Drei 컴포넌트 프로퍼티는 마운트 이후에 한 번만 적용됨
     따라서 ref.current 요소는 THREE.js 임으로 Drei 프로퍼티 직접적인 접근 불가, material.uniform 프로퍼티로 접근 가능  
 
-<-- sunPosition 일정 시간에 변화 적용, 나머지 요소 적용, 섹션 디자인 -->
+25.4.6.
+  - 시간대 별 하늘 상태 애니메이션 구현
+    - 구현
+      - sunPosition, rayleigh 전환 애니메이션 구현
+    - 최적화
+      - 애니메이션 실행 조건 추가
+      - 다음 애니메이션과 동일하거나 특정 시간대가 아니면 연산 제한
+
+    ShaderMaterial
+    : 커스텀 메테리얼, Threejs 맵핑 라이브러리 컴포넌트 속성도 해당
+    material.uniforms 프로퍼티 내부에 컴포넌트에 적용된 속성 보관됨
+
+    Vector3()
+    : 3D 벡터 표현 클래스, Threejs 지원 함수 닷 메서드로 바로 사용가능 - lerp, copy, equals ... 
+
+
+<-- 섹션 디자인 -->
