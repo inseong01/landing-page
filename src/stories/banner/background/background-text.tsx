@@ -1,13 +1,42 @@
-import { Text3D } from '@react-three/drei';
-import { ThreeEvent, useFrame } from '@react-three/fiber';
+import { Center, Text3D } from '@react-three/drei';
+import { Canvas, ThreeEvent, useFrame } from '@react-three/fiber';
 import { useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
+import './background.css';
 
-export default function MiddleText() {
+type TextProps = {
+  /** camera position of canvas */
+  position: THREE.Vector3;
+  /** field of view of camera  */
+  fov: number;
+  /** zoom of camera */
+  zoom: number;
+  /** rotation of text */
+  rotation: THREE.Euler;
+  /** content of text */
+  text: string;
+};
+
+export function Text({
+  position = new THREE.Vector3(0, -150, 0),
+  fov = 50,
+  zoom = 1,
+  rotation = new THREE.Euler(-80, 0, 0),
+  text = 'Good to see you',
+}: TextProps) {
+  return (
+    <Canvas camera={{ position, fov, zoom }}>
+      <Center rotation={rotation}>
+        <BackgroundMiddleText text={text} />
+      </Center>
+    </Canvas>
+  );
+}
+
+function BackgroundMiddleText({ text }: { text: string }) {
   const ref = useRef<THREE.Mesh>(null);
   const [isTriggered, setTrigger] = useState(false);
   const memoziedColor = useMemo(changeColor, [isTriggered]);
-  const text = `Good to see you`;
 
   const over = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();

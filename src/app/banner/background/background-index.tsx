@@ -1,8 +1,8 @@
 import { Center } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { useEffect, useMemo, useState } from 'react';
-import BackgroundClouds from './background-clouds';
-import BackgroundMiddleText from './background-text';
+import BackgroundGroup from './background-group';
+import MiddleText from './background-text';
 import { TimezoneContext } from '../../../context/context-current-time';
 import { getCurrnetHourTimezone } from '../../../utils/functions/time/get-current-timezon';
 import { setAmbientLightIntensity } from '../../../utils/functions/time/set-ambient-light-intensity';
@@ -39,7 +39,7 @@ export default function BannerBackground() {
 function FrontContent() {
   return (
     <Center rotation={[-80, 0, 0]}>
-      <BackgroundMiddleText />
+      <MiddleText />
     </Center>
   );
 }
@@ -47,7 +47,7 @@ function FrontContent() {
 function BackContent() {
   return (
     <Center>
-      <BackgroundClouds />
+      <BackgroundGroup />
     </Center>
   );
 }

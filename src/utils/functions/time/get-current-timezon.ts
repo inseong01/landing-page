@@ -4,6 +4,7 @@ export const MORNING = 'morning';
 export const AFTERNOON = 'afternoon';
 export const EVENING = 'evening';
 export const NIGHT = 'night';
+export type TIMEZONE = 'midnight' | 'dawn' | 'morning' | 'afternoon' | 'evening' | 'night';
 
 /**
  * midnight: 0\~4
