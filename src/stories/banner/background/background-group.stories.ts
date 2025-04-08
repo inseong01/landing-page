@@ -6,6 +6,9 @@ const meta: Meta<typeof BannerBackground> = {
   component: BannerBackground,
   tags: ['autodocs'],
   argTypes: {},
+  parameters: {
+    layout: 'centered',
+  },
 };
 export default meta;
 

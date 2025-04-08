@@ -11,6 +11,9 @@ const meta: Meta<typeof Sun> = {
     y: { control: 'number' },
     z: { control: 'number' },
   },
+  parameters: {
+    layout: 'centered',
+  },
 };
 export default meta;
 

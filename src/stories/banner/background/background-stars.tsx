@@ -8,6 +8,11 @@ import './background.css';
 type SkyStarsProps = {
   /** time based position of stars */
   timezone: TIMEZONE;
+  /** set amount of stars manually
+   *
+   * if true, timezone will not be adjusted
+   */
+  isManualMode: boolean;
   /** amount of stars */
   count?: number;
   /** size of star */
@@ -24,9 +29,9 @@ export function SkyStars({
   scaleUpSpeed = 1,
   starSphereRadius = 200,
   count = 1000,
-  ...props
+  isManualMode = false,
 }: SkyStarsProps) {
-  const starAmounts = count ? count : timezone ? setStarAmounts(timezone) : 1000;
+  const starAmounts = !isManualMode ? setStarAmounts(timezone) : count;
 
   return (
     <Canvas>
@@ -36,7 +41,6 @@ export function SkyStars({
         factor={factorSize}
         speed={scaleUpSpeed}
         radius={starSphereRadius}
-        {...props}
       />
     </Canvas>
   );

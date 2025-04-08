@@ -1,6 +1,7 @@
 import { Cloud, Clouds, Sky } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
+
 import { setAmbientLightIntensity } from '../../../utils/functions/time/set-ambient-light-intensity';
 import { TIMEZONE } from '../../../utils/functions/time/get-current-timezon';
 import { setSunPosition } from '../../../utils/functions/time/set-sun-position';
@@ -9,6 +10,11 @@ import './background.css';
 type SkyCloudsProps = {
   /** time based position of sun  */
   timezone: TIMEZONE;
+  /** set properties of cloud manually
+   *
+   * if true, timezone will not be adjusted
+   */
+  isManualMode: boolean;
   /** color of cloud */
   color?: string;
   /** distance between each cloud */
@@ -25,6 +31,7 @@ export function SkyClouds({
   bounds = 500,
   volume = 500,
   seed = Math.random(),
+  isManualMode = false,
 }: SkyCloudsProps) {
   const intensity = setAmbientLightIntensity(timezone);
   const sunPosition = setSunPosition(timezone);
@@ -34,22 +41,34 @@ export function SkyClouds({
 
   return (
     <Canvas camera={{ position, fov, zoom }}>
-      <BackgroundClouds color={color} bounds={bounds} volume={volume} seed={seed} />
+      <BackgroundClouds
+        color={color}
+        bounds={bounds}
+        volume={volume}
+        seed={seed}
+        isManualMode={isManualMode}
+      />
       <ambientLight intensity={intensity} />
       <Sky sunPosition={sunPosition} />
     </Canvas>
   );
 }
 
-function BackgroundClouds({ color, bounds, volume, seed }: Omit<SkyCloudsProps, 'timezone'>) {
+function BackgroundClouds({
+  color,
+  bounds,
+  volume,
+  seed,
+  isManualMode,
+}: Omit<SkyCloudsProps, 'timezone'>) {
   return (
     <Clouds material={THREE.MeshStandardMaterial} range={50}>
       <Cloud
         concentrate="inside"
         opacity={1}
-        color={color}
-        bounds={bounds}
-        volume={volume}
+        color={isManualMode ? color : 'white'}
+        bounds={isManualMode ? bounds : 500}
+        volume={isManualMode ? volume : 500}
         seed={seed}
       />
     </Clouds>

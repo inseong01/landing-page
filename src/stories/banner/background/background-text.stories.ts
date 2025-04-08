@@ -6,11 +6,18 @@ const meta: Meta<typeof Text> = {
   component: Text,
   tags: ['autodocs'],
   argTypes: {
-    position: { control: 'object' },
-    rotation: { control: 'object' },
+    x: { control: 'number' },
+    y: { control: 'number' },
+    z: { control: 'number' },
+    rotationX: { control: 'number' },
+    rotationY: { control: 'number' },
+    rotationZ: { control: 'number' },
     fov: { control: 'number' },
     text: { control: 'text' },
     zoom: { control: 'number' },
+  },
+  parameters: {
+    layout: 'centered',
   },
 };
 export default meta;

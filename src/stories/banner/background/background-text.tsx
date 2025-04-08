@@ -1,39 +1,84 @@
 import { Center, Text3D } from '@react-three/drei';
-import { Canvas, ThreeEvent, useFrame } from '@react-three/fiber';
-import { useMemo, useRef, useState } from 'react';
+import { Canvas, ThreeEvent, useFrame, useThree } from '@react-three/fiber';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
+
 import './background.css';
 
 type TextProps = {
-  /** camera position of canvas */
-  position: THREE.Vector3;
+  /** content of text */
+  text: string;
   /** field of view of camera  */
   fov: number;
   /** zoom of camera */
   zoom: number;
-  /** rotation of text */
-  rotation: THREE.Euler;
-  /** content of text */
-  text: string;
+  /** X position of camera */
+  x: number;
+  /** Y position of camera */
+  y: number;
+  /** Z position of camera */
+  z: number;
+  /** X rotation of camera */
+  rotationX: number;
+  /** Y rotation of camera */
+  rotationY: number;
+  /** Z rotation of camera */
+  rotationZ: number;
 };
 
 export function Text({
-  position = new THREE.Vector3(0, -150, 0),
   fov = 50,
   zoom = 1,
-  rotation = new THREE.Euler(-80, 0, 0),
   text = 'Good to see you',
+  x = 0,
+  y = -150,
+  z = 0,
+  rotationX = -80,
+  rotationY = 0,
+  rotationZ = 0,
 }: TextProps) {
+  const position = { x, y, z };
+  const rotation = new THREE.Euler(rotationX, rotationY, rotationZ);
+
   return (
-    <Canvas camera={{ position, fov, zoom }}>
-      <Center rotation={rotation}>
-        <BackgroundMiddleText text={text} />
-      </Center>
+    <Canvas camera={{ position: [x, y, z], fov, zoom }}>
+      <MiddleTextBox fov={fov} zoom={zoom} text={text} position={position} rotation={rotation} />
+      <ambientLight intensity={4} />
     </Canvas>
   );
 }
 
-function BackgroundMiddleText({ text }: { text: string }) {
+function MiddleTextBox({
+  fov,
+  zoom,
+  text,
+  position,
+  rotation,
+}: {
+  fov: number;
+  zoom: number;
+  text: string;
+  position: { x: number; y: number; z: number };
+  rotation: THREE.Euler;
+}) {
+  const { camera } = useThree();
+  const perspectiveCam = camera as THREE.PerspectiveCamera;
+
+  useEffect(() => {
+    perspectiveCam.zoom = zoom;
+    perspectiveCam.fov = fov;
+    perspectiveCam.position.set(position.x, position.y, position.z);
+    perspectiveCam.updateProjectionMatrix();
+  }, [fov, zoom, position]);
+
+  return (
+    <Center rotation={rotation}>
+      <MiddleText text={text} />
+    </Center>
+  );
+}
+
+function MiddleText({ text }: { text: string }) {
   const ref = useRef<THREE.Mesh>(null);
   const [isTriggered, setTrigger] = useState(false);
   const memoziedColor = useMemo(changeColor, [isTriggered]);
@@ -80,7 +125,7 @@ function BackgroundMiddleText({ text }: { text: string }) {
       </Text3D>
       <mesh position={[27, 2, 0]} rotation={[0, 0, 0]} onPointerOver={over} onPointerOut={leave}>
         <boxGeometry args={[58, 10, 0.5]} />
-        <meshBasicMaterial transparent opacity={0.0} />
+        <meshBasicMaterial transparent opacity={0} />
       </mesh>
     </group>
   );

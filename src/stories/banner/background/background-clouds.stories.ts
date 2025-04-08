@@ -6,10 +6,14 @@ const meta: Meta<typeof SkyClouds> = {
   component: SkyClouds,
   tags: ['autodocs'],
   argTypes: {
+    isManualMode: { control: 'boolean' },
     color: { control: 'color' },
     bounds: { control: 'number' },
     seed: { control: 'number' },
     volume: { control: 'number' },
+  },
+  parameters: {
+    layout: 'centered',
   },
 };
 export default meta;
