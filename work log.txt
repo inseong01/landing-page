@@ -125,4 +125,15 @@
     - text 애니메이션 오류 수정
     : 앰비언트 조명 추가
 
+25.4.9.
+  - tailwind 도입
+    - Vite Tailwind 플러그인 설정 "tailwindcss/vite"
+    - 자동 포맷팅 확장 프로그램 설정 "Tailwind CSS IntelliSense"
+    - 프리터 플러그인 설정 "prettier-plugin-tailwindcss"
+
+  - 모듈에서 테일윈드 CSS 전환
+
+  - 헤더 컴포넌트 모듈화
+
+
 <-- 섹션 디자인 -->
