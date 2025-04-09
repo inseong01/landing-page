@@ -1,36 +1,15 @@
-import styles from './header-index.module.css';
+import CategoryList from "./header-category-list";
+import Icon from "./header-icon";
 
-export default function BannerNavHeader() {
+export default function BannerHeader() {
   return (
-    <header className={styles.header}>
-      <nav className={styles.logoBox}>
-        <a href="#">
-          <div className={styles.logo}>Life Journal</div>
-        </a>
+    <header className="fixed top-0 left-0 z-9 flex h-auto w-full cursor-default items-center justify-between px-16 py-8 text-2xl font-bold text-white">
+      <nav className="h-full w-auto">
+        <Icon />
       </nav>
       <nav>
-        <CategoryBoxComp />
+        <CategoryList />
       </nav>
     </header>
-  );
-}
-
-function CategoryBoxComp() {
-  const categories = ['QR ORDER', 'CHATBOT', "What's next"];
-
-  return (
-    <ul className={styles.catgBox}>
-      {categories.map((value, idx) => (
-        <CategoryComp key={idx} title={value} />
-      ))}
-    </ul>
-  );
-}
-
-function CategoryComp({ title }: { title: string }) {
-  return (
-    <a href="#">
-      <li className={styles.catg}>{title}</li>
-    </a>
   );
 }

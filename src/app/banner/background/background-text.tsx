@@ -3,8 +3,8 @@ import { ThreeEvent, useFrame } from '@react-three/fiber';
 import { useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
-export default function BackgroundMiddleText() {
-  const ref = useRef(null);
+export default function MiddleText() {
+  const ref = useRef<THREE.Mesh>(null);
   const [isTriggered, setTrigger] = useState(false);
   const memoziedColor = useMemo(changeColor, [isTriggered]);
   const text = `Good to see you`;
@@ -13,6 +13,7 @@ export default function BackgroundMiddleText() {
     e.stopPropagation();
     setTrigger(true);
   };
+
   const leave = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
     setTrigger(false);
@@ -21,9 +22,11 @@ export default function BackgroundMiddleText() {
   function changeColor() {
     return new THREE.Color(isTriggered ? '#304E71' : '#fff');
   }
+
   function transitionTextValue() {
     if (!ref.current) return;
-    ref.current.material.color.lerp(memoziedColor, 0.05);
+    const material = ref.current.material as THREE.MeshStandardMaterial;
+    material.color.lerp(memoziedColor, 0.05);
   }
 
   useFrame(transitionTextValue);
