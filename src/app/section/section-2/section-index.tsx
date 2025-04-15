@@ -1,35 +1,30 @@
-export default function Section_2() {
+import PhoneDevice from "../../../components/app/device/phone";
+import TabletDevice from "../../../components/app/device/tablet";
+
+export default function PlatformOverview() {
   return (
-    <section className="flex h-svh w-full items-center justify-center bg-[#F5F5F5] py-24">
-      <div className="flex w-[1000px] items-center justify-between">
-        <div className="w-full">
-          <div className="mb-12">
-            <h2 className="mb-5 block text-4xl font-bold text-[#5A80A5]">
-              손쉽게,
-              <br />
-              시작할 수 있어요.
-            </h2>
-            <p className="w-60">
-              별도 프로그램과 기기 설치 없이 바로 사용할 수 있어요.
-            </p>
+    <section className="h-fit w-full bg-[#F5F5F5] py-40 text-[#5A80A5]">
+      <div className="flex w-full items-center justify-center">
+        <div className="h-fit w-250">
+          <div className="mb-25 flex flex-col items-center justify-center gap-3">
+            <span className="text-xl">
+              방문 고객과 매장 관리자를 위한 웹 애플리케이션
+            </span>
+            <div className="text-center">
+              <div className="flex w-[396px]">
+                <img src="./src/assets/logo.png" alt="qr order 로고" />
+              </div>
+              <span className="text-xl">QR 주문 / 매장 관리 서비스</span>
+            </div>
           </div>
-        </div>
-        <div className="relative flex h-fit w-full items-center justify-center">
-          <TabletDevice />
+          <div className="relative m-auto w-[655px]">
+            <TabletDevice />
+            <div className="absolute right-0 -bottom-12">
+              <PhoneDevice />
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function TabletDevice() {
-  return (
-    <div className="flex h-[422px] w-[550px]">
-      <img
-        src="./src/assets/devices/tablet.png"
-        alt="tablet img"
-        className="rounded-[26px] shadow-[0_0px_35px_rgba(0,0,0,0.25)]"
-      />
-    </div>
   );
 }

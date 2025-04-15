@@ -1,26 +1,18 @@
-export default function Section_5() {
+export default function PromotionBanner() {
   return (
-    <section className="flex h-svh w-full items-center justify-between bg-[#5A80A5] px-80 py-24 text-white">
-      <div className="h-fit w-full">
-        <div className="mb-10 text-5xl font-bold capitalize">
-          <h2>other projects</h2>
+    <section className="flex h-svh w-full items-center justify-center bg-[#F5F5F5] py-24">
+      <div className="flex flex-col gap-8">
+        <p className="text-center text-3xl font-bold">
+          설치 비용 없이 <br /> 매장 관리를 시작해보세요!
+        </p>
+        <div className="flex w-[396px]">
+          <img src="./src/assets/logo.png" alt="qr order 로고" />
         </div>
-        <ul className="flex h-full w-full gap-10">
-          <li className="flex h-90 max-w-60 flex-1 flex-col justify-between overflow-hidden rounded-2xl bg-[#ACB4BA] p-6">
-            <div className="capitalize">
-              <span className="text-sm">1인 개발</span>
-              <h3 className="text-3xl font-bold">project 1</h3>
-            </div>
-            <div className="flex w-full justify-end">
-              <div className="flex h-10 w-10 items-center justify-center rounded-[50%] bg-white p-3">
-                <img
-                  src="./src/assets/icon/filp-card.svg"
-                  alt="filp card icon"
-                />
-              </div>
-            </div>
-          </li>
-        </ul>
+        <div className="text-center">
+          <a className="text-xl text-[#5A80A5] hover:underline" href="#">
+            깃허브 저장소 훑어보기
+          </a>
+        </div>
       </div>
     </section>
   );
