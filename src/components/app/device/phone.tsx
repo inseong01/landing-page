@@ -1,9 +1,9 @@
 export default function PhoneDevice({
-  src = "./src/assets/devices/phone.png",
-  alt = "phone image",
+  src,
+  alt,
 }: {
-  src?: string;
-  alt?: string;
+  src: string;
+  alt: string;
 }) {
   return (
     <div className="flex h-[395px] w-[200px]">

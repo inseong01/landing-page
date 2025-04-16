@@ -5,7 +5,7 @@ export default function IntroSection() {
         <div className="text-4xl font-bold tracking-[5px]">
           프로젝트 둘러보기
         </div>
-        <div className="absolute bottom-0 z-1 h-30 w-full shadow-[0_10px_10px_rgba(0,0,0,0.2)]"></div>
+        <div className="absolute bottom-0 z-99 h-30 w-full shadow-[0_10px_10px_rgba(0,0,0,0.2)]"></div>
       </div>
     </section>
   );

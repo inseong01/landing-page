@@ -1,12 +1,12 @@
 export default function TabletDevice({
-  src = "./src/assets/devices/tablet.png",
-  alt = "tablet image",
+  src,
+  alt,
 }: {
-  src?: string;
-  alt?: string;
+  src: string;
+  alt: string;
 }) {
   return (
-    <div className="flex h-[422px] w-[550px]">
+    <div className="flex h-[400px] w-[528px] items-center justify-center">
       <img
         src={src}
         alt={alt}

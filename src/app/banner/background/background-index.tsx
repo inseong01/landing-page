@@ -1,11 +1,8 @@
-import { Center } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { useContext, useEffect, useMemo, useState } from "react";
-import BackgroundGroup from "./background-group";
-import MiddleText from "./background-text";
+import { useEffect, useMemo, useState } from "react";
 import { TimezoneContext } from "../../../context/context-current-time";
 import { getCurrnetHourTimezone } from "../../../utils/functions/time/get-current-timezon";
-import { setAmbientLightIntensity } from "../../../utils/functions/time/set-ambient-light-intensity";
+import BannerCanvas from "./canvas/canvas-index";
+import BannerTitle from "./title/title-index";
 
 export default function BannerBackground() {
   const currentHour = new Date().getHours();
@@ -27,41 +24,10 @@ export default function BannerBackground() {
 
   return (
     <TimezoneContext.Provider value={currentTimezone}>
-      <section className="h-[200vh]">
-        <Canvas shadows camera={{ position: [0, -150, 0], fov: 50, zoom: 1 }}>
-          <InsideCanvasComp />
-        </Canvas>
+      <section className="relative h-[200vh]">
+        <BannerTitle />
+        <BannerCanvas />
       </section>
     </TimezoneContext.Provider>
-  );
-}
-
-function InsideCanvasComp() {
-  const currentTimezone = useContext(TimezoneContext);
-  const intensity = setAmbientLightIntensity(currentTimezone);
-
-  return (
-    <>
-      <FrontContent />
-      <BackContent />
-      <ambientLight intensity={intensity} />
-      {/* <OrbitControls /> */}
-    </>
-  );
-}
-
-function FrontContent() {
-  return (
-    <Center rotation={[-80, 0, 0]}>
-      <MiddleText />
-    </Center>
-  );
-}
-
-function BackContent() {
-  return (
-    <Center>
-      <BackgroundGroup />
-    </Center>
   );
 }

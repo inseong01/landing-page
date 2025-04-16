@@ -1,13 +1,13 @@
-import { Sky } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
-import { useContext, useEffect, useRef } from 'react';
-import { Sky as SkyImpl } from 'three-stdlib';
-import * as THREE from 'three';
-import { TimezoneContext } from '../../../context/context-current-time';
-import { setSunRayleigh } from '../../../utils/functions/time/set-sun-rayleigh';
-import { setSunPosition } from '../../../utils/functions/time/set-sun-position';
-import { setSunTurbidity } from '../../../utils/functions/time/set-sun-turbidity';
-import { getCurrnetHourTimezone } from '../../../utils/functions/time/get-current-timezon';
+import { Sky } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { useContext, useEffect, useRef } from "react";
+import { Sky as SkyImpl } from "three-stdlib";
+import * as THREE from "three";
+import { TimezoneContext } from "../../../../../context/context-current-time";
+import { setSunRayleigh } from "../../../../../utils/functions/time/set-sun-rayleigh";
+import { setSunPosition } from "../../../../../utils/functions/time/set-sun-position";
+import { setSunTurbidity } from "../../../../../utils/functions/time/set-sun-turbidity";
+import { getCurrnetHourTimezone } from "../../../../../utils/functions/time/get-current-timezon";
 
 export default function SkySun() {
   /* sky */
@@ -24,7 +24,9 @@ export default function SkySun() {
     const now = new Date();
     const currentHour = now.getHours();
     const currentMinutes = now.getMinutes();
-    const isOneHourBeforeTimezoneChange = [3, 7, 11, 15, 19, 23].includes(currentHour);
+    const isOneHourBeforeTimezoneChange = [3, 7, 11, 15, 19, 23].includes(
+      currentHour,
+    );
 
     if (isOneHourBeforeTimezoneChange && currentMinutes !== 59) return;
 
@@ -41,7 +43,7 @@ export default function SkySun() {
     uniforms.rayleigh.value = THREE.MathUtils.lerp(
       uniforms.rayleigh.value,
       nextRayleighValue,
-      0.01
+      0.01,
     );
   }
 

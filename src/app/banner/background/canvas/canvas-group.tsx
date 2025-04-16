@@ -1,11 +1,11 @@
-import { RootState, useFrame } from '@react-three/fiber';
-import { useRef } from 'react';
-import * as THREE from 'three';
-import SkyStars from './background-stars';
-import SkySun from './background-sun';
-import SkyClouds from './background-clouds';
+import { RootState, useFrame } from "@react-three/fiber";
+import { useRef } from "react";
+import * as THREE from "three";
+import SkyStars from "./element/element-stars";
+import SkySun from "./element/element-sun";
+import SkyClouds from "./element/element-clouds";
 
-export default function BackgroundGroup() {
+export default function CanvasElementsGroup() {
   const groupRef = useRef<THREE.Group>(null);
   const initialPosition = useRef(new THREE.Vector3());
   const precisionFix = (num: number) => Math.round(num * 10000) / 10000;
