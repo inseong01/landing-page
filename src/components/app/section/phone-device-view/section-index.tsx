@@ -33,7 +33,7 @@ export default function PhoneDeviceView({
           {caution && <p className="text-[#666]">{caution}</p>}
         </div>
         <div className="relative flex h-fit w-[60%] items-center justify-center">
-          <PhoneDevice src={src} alt={alt} />
+          <PhoneDevice src={src} alt={alt} hoverEnable={false} />
         </div>
       </div>
     </section>

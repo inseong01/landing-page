@@ -23,7 +23,7 @@ export default function PlatformOverview({
   phone_alt,
 }: PlatformOverviewProps) {
   return (
-    <section className="relative z-9 h-fit w-full bg-[#F5F5F5] py-40 text-[#5A80A5]">
+    <section className="relative z-9 h-fit w-full cursor-default bg-[#F5F5F5] py-40 text-[#5A80A5]">
       <div className="flex w-full items-center justify-center">
         <div className="h-fit w-250">
           <div className="mb-25 flex flex-col items-center justify-center gap-3">
@@ -38,7 +38,11 @@ export default function PlatformOverview({
           <div className="relative m-auto w-[655px]">
             <TabletDevice src={tablet_src} alt={tablet_alt} />
             <div className="absolute right-0 -bottom-12">
-              <PhoneDevice alt={phone_alt} src={phone_src} />
+              <PhoneDevice
+                alt={phone_alt}
+                src={phone_src}
+                hoverEnable={false}
+              />
             </div>
           </div>
         </div>

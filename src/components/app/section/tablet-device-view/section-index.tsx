@@ -19,7 +19,7 @@ export default function TabletDeviceView({
   alt,
 }: TabletDeviceViewProps) {
   return (
-    <section className="flex h-svh w-full items-center justify-center bg-[#F5F5F5] py-24">
+    <section className="flex h-svh w-full cursor-default items-center justify-center bg-[#F5F5F5] py-24">
       <div
         className={`flex w-[1000px] items-center justify-between ${isReverse ? "flex-row-reverse" : "flex-row"} gap-20 break-keep`}
       >

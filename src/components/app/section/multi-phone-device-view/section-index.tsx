@@ -26,9 +26,9 @@ export default function MultiPhoneDevicesView({
   alt_2,
   alt_3,
 }: MultiPhoneDevicesViewProps) {
-  const mobileDeviceProps = { src_1, src_2, src_3, alt_1, alt_2, alt_3 };
+  const phoneDeviceProps = { src_1, src_2, src_3, alt_1, alt_2, alt_3 };
   return (
-    <section className="flex h-fit w-full items-center justify-center bg-[#F5F5F5] py-24">
+    <section className="flex h-fit w-full cursor-default items-center justify-center bg-[#F5F5F5] py-24">
       <div
         className={`flex w-[1000px] items-center justify-between gap-25 ${isReverse ? "flex-row-reverse" : "flex-row"}`}
       >
@@ -42,7 +42,7 @@ export default function MultiPhoneDevicesView({
           {caution && <p className="text-[#666]">{caution}</p>}
         </div>
         <div className="relative flex h-fit w-full items-center justify-center">
-          <MobileDeviceBox {...mobileDeviceProps} />
+          <MobileDeviceBox {...phoneDeviceProps} />
         </div>
       </div>
     </section>
@@ -67,13 +67,13 @@ function MobileDeviceBox({
   return (
     <div className="h-full w-full">
       <div className="flex items-center justify-end gap-10">
-        <PhoneDevice src={src_1} alt={alt_1} />
+        <PhoneDevice src={src_1} alt={alt_1} hoverEnable={true} />
         <div className="flex flex-col gap-10">
           <div>
-            <PhoneDevice src={src_2} alt={alt_2} />
+            <PhoneDevice src={src_2} alt={alt_2} hoverEnable={true} />
           </div>
           <div>
-            <PhoneDevice src={src_3} alt={alt_3} />
+            <PhoneDevice src={src_3} alt={alt_3} hoverEnable={true} />
           </div>
         </div>
       </div>

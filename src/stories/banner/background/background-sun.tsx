@@ -1,14 +1,13 @@
-import { Canvas } from '@react-three/fiber';
-import { Center, Sky } from '@react-three/drei';
-import * as THREE from 'three';
+import { Canvas } from "@react-three/fiber";
+import { Center } from "@react-three/drei";
+import * as THREE from "three";
 
-import { setSunPosition } from '../../../utils/functions/time/set-sun-position';
-import { setSunRayleigh } from '../../../utils/functions/time/set-sun-rayleigh';
-import { setSunTurbidity } from '../../../utils/functions/time/set-sun-turbidity';
-import { TIMEZONE } from '../../../utils/functions/time/get-current-timezon';
-import './background.css';
+import { TIMEZONE } from "../../../utils/functions/time/get-current-timezon";
+import { TimezoneContext } from "../../../context/context-current-time";
+import SunComp from "./components/component-sun";
+import StoryBookViewFrame from "./components/component-frame";
 
-type SunProps = {
+export type SunProps = {
   /** time based position of sun */
   timezone: TIMEZONE;
   /** set sun position manually
@@ -31,25 +30,14 @@ export function Sun({ timezone, isManualMode = false, x, y, z }: SunProps) {
   const zoom = 1;
 
   return (
-    <Canvas camera={{ position, fov, zoom }}>
-      <Center rotation={rotation}>
-        <SkySun timezone={timezone} isManualMode={isManualMode} x={x} y={y} z={z} />
-      </Center>
-    </Canvas>
-  );
-}
-
-function SkySun({ timezone, isManualMode, x, y, z }: SunProps) {
-  const sunPositionsValue = isManualMode ? new THREE.Vector3(x, y, z) : setSunPosition(timezone);
-  const rayleighValue = setSunRayleigh(timezone);
-  const turbidityValue = setSunTurbidity(timezone);
-
-  return (
-    <Sky
-      sunPosition={sunPositionsValue}
-      rayleigh={rayleighValue}
-      turbidity={turbidityValue}
-      distance={5000}
-    />
+    <TimezoneContext.Provider value={timezone}>
+      <StoryBookViewFrame>
+        <Canvas camera={{ position, fov, zoom }}>
+          <Center rotation={rotation}>
+            <SunComp isManualMode={isManualMode} x={x} y={y} z={z} />
+          </Center>
+        </Canvas>
+      </StoryBookViewFrame>
+    </TimezoneContext.Provider>
   );
 }

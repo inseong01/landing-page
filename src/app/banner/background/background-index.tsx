@@ -24,7 +24,7 @@ export default function BannerBackground() {
 
   return (
     <TimezoneContext.Provider value={currentTimezone}>
-      <section className="relative h-[200vh]">
+      <section className="relative h-[200vh] cursor-default">
         <BannerTitle />
         <BannerCanvas />
       </section>

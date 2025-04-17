@@ -1,12 +1,5 @@
-import {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useState,
-} from "react";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 import BannerBackground from "./app/banner/background/background-index";
-import BannerHeader from "./app/banner/header/header-index";
 import Footer from "./app/footer/footer-index";
 import CategoryTransition from "./app/nav/main/category/transition-index";
 import IntroSection from "./app/section/intro/section-index";
@@ -21,15 +14,12 @@ export const SetCategoryContext = createContext<
 >(() => {});
 
 export default function App() {
-  const [clickedIdx, setClickedIdx] = useState(0);
-
   return (
     <div className="h-screen w-full font-[Open_Sans]">
       <meta name="author" content="Inseong Yu" />
       <meta name="keyword" content="React, Threejs" />
       <meta name="description" content="This is React metadata" />
       {/* banner */}
-      {/* <BannerHeader /> */}
       <BannerBackground />
       {/* intro */}
       <IntroSection />
@@ -44,14 +34,8 @@ export default function App() {
         phone_src="./src/assets/devices/phone.png"
         phone_alt="phone img"
       />
-      <CategoryContext.Provider value={clickedIdx}>
-        <SetCategoryContext.Provider value={setClickedIdx}>
-          {/* nav */}
-          <CategoryTransition list={["매장 관리", "주문"]} />
-          {/* category project box */}
-          <CategoryProjectBox />
-        </SetCategoryContext.Provider>
-      </CategoryContext.Provider>
+      {/* CategoryProjectBox */}
+      <CategoryProjectBox />
       {/* other projects */}
       <OtherProjects />
       {/* footer */}
@@ -61,7 +45,16 @@ export default function App() {
 }
 
 function CategoryProjectBox() {
-  const clickedIdx = useContext(CategoryContext);
+  const [clickedIdx, setClickedIdx] = useState(0);
 
-  return <>{clickedIdx === 0 ? <AdminService /> : <CustomerService />}</>;
+  return (
+    <CategoryContext.Provider value={clickedIdx}>
+      <SetCategoryContext.Provider value={setClickedIdx}>
+        {/* nav */}
+        <CategoryTransition list={["매장 관리", "주문"]} />
+        {/* category project box */}
+        {clickedIdx === 0 ? <AdminService /> : <CustomerService />}{" "}
+      </SetCategoryContext.Provider>
+    </CategoryContext.Provider>
+  );
 }
