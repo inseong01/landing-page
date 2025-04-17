@@ -1,11 +1,13 @@
-import { Sky, Stars } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
+import { Sky } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 
-import { setStarAmounts } from '../../../utils/functions/time/set-star-amounts';
-import { TIMEZONE } from '../../../utils/functions/time/get-current-timezon';
-import './background.css';
+import { TIMEZONE } from "../../../utils/functions/time/get-current-timezon";
+import { TimezoneContext } from "../../../context/context-current-time";
+import StarsComp from "./components/component-stars";
+import StoryBookViewFrame from "./components/component-frame";
+import "./background.css";
 
-type SkyStarsProps = {
+export type SkyStarsProps = {
   /** time based position of stars */
   timezone: TIMEZONE;
   /** set amount of stars manually
@@ -23,7 +25,7 @@ type SkyStarsProps = {
   starSphereRadius?: number;
 };
 
-export function SkyStars({
+export function Stars({
   timezone,
   factorSize = 1,
   scaleUpSpeed = 1,
@@ -31,17 +33,20 @@ export function SkyStars({
   count = 1000,
   isManualMode = false,
 }: SkyStarsProps) {
-  const starAmounts = !isManualMode ? setStarAmounts(timezone) : count;
-
   return (
-    <Canvas>
-      <Sky sunPosition={[0, 0, 0]} />
-      <Stars
-        count={starAmounts}
-        factor={factorSize}
-        speed={scaleUpSpeed}
-        radius={starSphereRadius}
-      />
-    </Canvas>
+    <TimezoneContext.Provider value={timezone}>
+      <StoryBookViewFrame>
+        <Canvas>
+          <Sky sunPosition={[0, 0, 0]} />
+          <StarsComp
+            count={count}
+            factorSize={factorSize}
+            scaleUpSpeed={scaleUpSpeed}
+            starSphereRadius={starSphereRadius}
+            isManualMode={isManualMode}
+          />
+        </Canvas>
+      </StoryBookViewFrame>
+    </TimezoneContext.Provider>
   );
 }

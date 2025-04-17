@@ -1,4 +1,11 @@
-import { AFTERNOON, DAWN, EVENING, MIDNIGHT, MORNING, NIGHT } from './get-current-timezon';
+import {
+  AFTERNOON,
+  DAWN,
+  EVENING,
+  MIDNIGHT,
+  MORNING,
+  NIGHT,
+} from "./get-current-timezon";
 
 /**
  * amount 수정하여 밝기 조정 가능
@@ -7,7 +14,7 @@ import { AFTERNOON, DAWN, EVENING, MIDNIGHT, MORNING, NIGHT } from './get-curren
  *
  * night/midnight: 0
  *
- * dawn/eveing: 0.5
+ * dawn/eveing: 1
  *
  * morning/afternoon: 1
  *
@@ -23,14 +30,14 @@ export function setAmbientLightIntensity(timezone: string) {
     }
     case DAWN:
     case EVENING: {
-      return 0.5;
+      return 1;
     }
     case MORNING:
     case AFTERNOON: {
       return 1 * amount;
     }
     default: {
-      throw new Error('Hour error, hour is unavaliable');
+      throw new Error("Hour error, hour is unavaliable");
     }
   }
 }
