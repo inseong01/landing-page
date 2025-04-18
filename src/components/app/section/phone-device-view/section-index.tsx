@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import PhoneDevice from "../../device/phone";
+import CommonSectionFrame from "../frame/section-frame";
 
 type TabletDeviceViewProps = {
   titleNode: ReactNode;
@@ -19,7 +20,7 @@ export default function PhoneDeviceView({
   alt,
 }: TabletDeviceViewProps) {
   return (
-    <section className="flex h-svh w-full items-center justify-center bg-[#F5F5F5] py-24">
+    <CommonSectionFrame>
       <div
         className={`flex w-[1000px] items-center justify-between ${isReverse ? "flex-row-reverse" : "flex-row"} gap-20 break-keep`}
       >
@@ -36,6 +37,6 @@ export default function PhoneDeviceView({
           <PhoneDevice src={src} alt={alt} hoverEnable={false} />
         </div>
       </div>
-    </section>
+    </CommonSectionFrame>
   );
 }

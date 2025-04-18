@@ -60,7 +60,7 @@ export default function AdminService() {
           </>
         }
         href="https://github.com/inseong01/QR-order-admin"
-        main_product_src="./src/assets/logo.png"
+        main_product_src="./src/assets/project/qr-order-logo.png"
         main_product_alt="qr order logo"
       />
     </>

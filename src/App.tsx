@@ -26,7 +26,7 @@ export default function App() {
       {/* overview */}
       <PlatformOverview
         simple_product_info={"방문 고객과 매장 관리자를 위한 웹 애플리케이션"}
-        main_product_src="./src/assets/logo.png"
+        main_product_src="./src/assets/project/qr-order-logo.png"
         main_product_alt="qr order logo"
         serviceCategory={"QR 주문 / 매장 관리 서비스"}
         tablet_src="./src/assets/devices/tablet.png"

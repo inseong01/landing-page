@@ -1,3 +1,5 @@
+import MoveWindowSvgIcon from "./section-window-icon";
+
 export default function ProjectList({
   href,
   title,
@@ -29,7 +31,7 @@ function LinkConnectButton({ href }: { href: string }) {
       className="flex h-10 w-10 items-center justify-center rounded-[50%] bg-white p-2.5"
       target="_blank"
     >
-      <img src="./src/assets/icon/move-window.svg" alt="link connect icon" />
+      <MoveWindowSvgIcon />
     </a>
   );
 }

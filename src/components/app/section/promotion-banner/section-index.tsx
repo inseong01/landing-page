@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import CommonSectionFrame from "../frame/section-frame";
 
 type PromotionBannerProps = {
   hookMentNode: ReactNode;
@@ -22,7 +23,7 @@ export default function PromotionBanner({
   }
 
   return (
-    <section className="flex h-svh w-full cursor-default items-center justify-center bg-[#F5F5F5] py-24">
+    <CommonSectionFrame>
       <div className="flex flex-col gap-8">
         <p className="text-center text-3xl font-bold text-[#5A80A5]">
           {hookMentNode}
@@ -48,10 +49,10 @@ export default function PromotionBanner({
             <div className="flex h-10 w-10 items-center justify-center p-2 motion-safe:animate-bounce">
               <div className="flex h-full w-full rotate-45 items-center justify-center border-t-2 border-l-2 border-[#5A80A5]"></div>
             </div>
-            <div className="text-sm text-[#5A80A5]">위로 올라가기</div>
+            <div className="text-sm text-[#5A80A5]">프로젝트 다시보기</div>
           </button>
         </nav>
       </div>
-    </section>
+    </CommonSectionFrame>
   );
 }
