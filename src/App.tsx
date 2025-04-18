@@ -53,7 +53,7 @@ function CategoryProjectBox() {
         {/* nav */}
         <CategoryTransition list={["매장 관리", "주문"]} />
         {/* category project box */}
-        {clickedIdx === 0 ? <AdminService /> : <CustomerService />}{" "}
+        {clickedIdx === 0 ? <AdminService /> : <CustomerService />}
       </SetCategoryContext.Provider>
     </CategoryContext.Provider>
   );
