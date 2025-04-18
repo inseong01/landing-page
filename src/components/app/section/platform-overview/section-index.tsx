@@ -23,7 +23,10 @@ export default function PlatformOverview({
   phone_alt,
 }: PlatformOverviewProps) {
   return (
-    <section className="relative z-9 h-fit w-full cursor-default bg-[#F5F5F5] py-40 text-[#5A80A5]">
+    <section
+      id="overview"
+      className="relative z-9 h-fit w-full cursor-default bg-[#F5F5F5] py-40 text-[#5A80A5]"
+    >
       <div className="flex w-full items-center justify-center">
         <div className="h-fit w-250">
           <div className="mb-25 flex flex-col items-center justify-center gap-3">

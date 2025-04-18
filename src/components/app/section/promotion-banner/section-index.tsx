@@ -13,6 +13,14 @@ export default function PromotionBanner({
   main_product_src,
   main_product_alt,
 }: PromotionBannerProps) {
+  /**
+   * PlatformOverview 컴포넌트 위치로 이동
+   */
+  function onClickScrollToPlatformOverview() {
+    const section = document.getElementById("overview");
+    window.scroll({ top: section?.offsetTop, behavior: "smooth" });
+  }
+
   return (
     <section className="flex h-svh w-full cursor-default items-center justify-center bg-[#F5F5F5] py-24">
       <div className="flex flex-col gap-8">
@@ -31,15 +39,18 @@ export default function PromotionBanner({
             깃허브 저장소 훑어보기
           </a>
         </div>
-        <div className="mt-20 flex items-center justify-center">
+        <nav className="mt-20 flex flex-col items-center justify-center">
           <button
-            /* onClick 프로젝트 둘러보기 위치 이동, fadein 설정 */
             type="button"
-            className="flex h-10 w-10 cursor-pointer items-center justify-center p-2 motion-safe:animate-bounce"
+            onClick={onClickScrollToPlatformOverview}
+            className="flex cursor-pointer flex-col items-center justify-center"
           >
-            <div className="flex h-full w-full rotate-45 items-center justify-center border-t-2 border-l-2 border-[#5A80A5]"></div>
+            <div className="flex h-10 w-10 items-center justify-center p-2 motion-safe:animate-bounce">
+              <div className="flex h-full w-full rotate-45 items-center justify-center border-t-2 border-l-2 border-[#5A80A5]"></div>
+            </div>
+            <div className="text-sm text-[#5A80A5]">위로 올라가기</div>
           </button>
-        </div>
+        </nav>
       </div>
     </section>
   );
