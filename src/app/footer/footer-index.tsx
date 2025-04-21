@@ -7,7 +7,7 @@ export default function Footer() {
       <ul className="flex items-center justify-between text-lg text-white">
         <li>
           <a className="flex h-full w-fit items-center gap-10">
-            <div>this is a sentence.</div>
+            <div>Hello</div>
           </a>
         </li>
         <li className="flex h-full w-fit items-center gap-10 capitalize">

@@ -28,7 +28,7 @@ export default function PromotionBanner({
         <p className="text-center text-3xl font-bold text-[#5A80A5]">
           {hookMentNode}
         </p>
-        <div className="flex w-[396px]">
+        <div className="flex h-[106px] w-[396px]">
           <img src={main_product_src} alt={main_product_alt} />
         </div>
         <div className="text-center">

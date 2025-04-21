@@ -32,13 +32,13 @@ export default function PlatformOverview({
           <div className="mb-25 flex flex-col items-center justify-center gap-3">
             <span className="text-xl">{simple_product_info}</span>
             <div className="text-center">
-              <div className="flex w-[396px]">
+              <div className="flex h-[106px] w-[396px]">
                 <img src={main_product_src} alt={main_product_alt} />
               </div>
               <span className="text-xl">{serviceCategory}</span>
             </div>
           </div>
-          <div className="relative m-auto w-[655px]">
+          <div className="relative m-auto h-auto w-[655px]">
             <TabletDevice src={tablet_src} alt={tablet_alt} />
             <div className="absolute right-0 -bottom-12">
               <PhoneDevice

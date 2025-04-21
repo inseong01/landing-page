@@ -244,4 +244,22 @@
     - CommonSectionFrame 컴포넌트 생성
     : TabletDeviceView, PhoneDeviceView, PromotionBanner
 
-<-- 실사용 사진, GIF 삽입 -->
+25.4.21.
+  - 목업 사진 삽입
+
+  - 실사용 영상 gif 삽입 
+
+  - Tablet, Phone 컴포넌트 
+    - width, height 임의 설정 속성 추가  
+
+  - OtherProjects
+    - 챗봇 svg 아이콘 삽입
+
+  - BannerDvh
+    - nav 추가
+    : 하단 섹션 여부 알림
+
+  - 빌드 점검
+  : 이미지 import 적용
+
+<-- git action 작성, 빈 페이지 로딩 설정 -->

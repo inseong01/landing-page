@@ -68,7 +68,7 @@ function MobileDeviceBox({
     <div className="h-full w-full">
       <div className="flex items-center justify-end gap-10">
         <PhoneDevice src={src_1} alt={alt_1} hoverEnable={true} />
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-15">
           <div>
             <PhoneDevice src={src_2} alt={alt_2} hoverEnable={true} />
           </div>

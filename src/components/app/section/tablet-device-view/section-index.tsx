@@ -22,7 +22,7 @@ export default function TabletDeviceView({
   return (
     <CommonSectionFrame>
       <div
-        className={`flex w-[1000px] items-center justify-between ${isReverse ? "flex-row-reverse" : "flex-row"} gap-20 break-keep`}
+        className={`flex h-full w-[1000px] items-center justify-between ${isReverse ? "flex-row-reverse" : "flex-row"} gap-20 break-keep`}
       >
         <div className="w-full">
           <div className="mb-12">
@@ -33,8 +33,13 @@ export default function TabletDeviceView({
           </div>
           {caution && <p className="text-[#666]">{caution}</p>}
         </div>
-        <div className="relative flex h-fit w-full items-center justify-center">
-          <TabletDevice src={src} alt={alt} />
+        <div className="relative flex h-auto w-full items-center justify-center">
+          <TabletDevice
+            src={src}
+            alt={alt}
+            width="w-[542px]"
+            height="h-[415px]"
+          />
         </div>
       </div>
     </CommonSectionFrame>

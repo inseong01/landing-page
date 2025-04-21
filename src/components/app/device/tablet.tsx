@@ -1,12 +1,16 @@
 export default function TabletDevice({
   src,
   alt,
+  width = "w-[542px]",
+  height = "h-[415px]",
 }: {
   src: string;
   alt: string;
+  width?: string;
+  height?: string;
 }) {
   return (
-    <div className="flex h-[400px] w-[528px] items-center justify-center">
+    <div className={`flex ${height} ${width} items-center justify-center`}>
       <img
         src={src}
         alt={alt}
