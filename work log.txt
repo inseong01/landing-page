@@ -267,5 +267,15 @@
     - pull_request 버전 확인
 
     - push 자동 배포
-    
+
+  - story 수정
+    banner-index, 하단 이동 표시 아이콘 추가
+
+  - BannerDvh
+    하단 이동 표시 아이콘 색상 변화 시기 적용
+
+  - BannerCanvas 
+    canvas camera fov 증가 
+    구름 회전 속도 감소
+
 <-- 빈 페이지 로딩 설정 -->

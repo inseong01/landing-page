@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { TimezoneContext } from "../../../../context/context-current-time";
 
 export default function DownMotionNav() {
   const [isOn, setOn] = useState(true);
+  const timezone = useContext(TimezoneContext);
+  const isDarkness = timezone === "night" || timezone === "midnight";
+  const bgColor = isDarkness ? "border-[#ffffffb0]" : "border-[#2222225e]";
 
   useEffect(() => {
     const scrollAnimation = () => {
@@ -22,7 +26,9 @@ export default function DownMotionNav() {
     <div
       className={`absolute bottom-10 left-1/2 flex h-10 w-10 items-center justify-center p-2 motion-safe:animate-bounce ${isOn ? "opacity-100" : "opacity-0"} duration-500`}
     >
-      <div className="flex h-full w-full rotate-225 items-center justify-center border-t-2 border-l-2 border-[#ffffff5d]"></div>
+      <div
+        className={`flex h-full w-full rotate-225 items-center justify-center border-t-2 border-l-2 ${bgColor}`}
+      ></div>
     </div>
   );
 }

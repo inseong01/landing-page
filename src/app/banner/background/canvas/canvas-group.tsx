@@ -18,7 +18,7 @@ export default function CanvasElementsGroup() {
     const t = precisionFix(state.clock.getElapsedTime());
 
     // 회전 속도
-    groupRef.current.rotation.y += 0.0002;
+    groupRef.current.rotation.y += 0.0001;
 
     // 원형 궤도 따라 이동
     const radius = 1;
