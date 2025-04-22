@@ -278,4 +278,8 @@
     canvas camera fov 증가 
     구름 회전 속도 감소
 
+  - package.json 수정
+  : 이름, 버전
+
+
 <-- 빈 페이지 로딩 설정 -->
