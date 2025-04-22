@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { TimezoneContext } from "../../../context/context-current-time";
 import { getCurrnetHourTimezone } from "../../../utils/functions/time/get-current-timezon";
 import BannerCanvas from "./canvas/canvas-index";
-import BannerTitle from "./title/title-index";
+import BannerDvhSize from "./dvh/dvh-index";
 
 export default function BannerBackground() {
   const currentHour = new Date().getHours();
@@ -25,7 +25,7 @@ export default function BannerBackground() {
   return (
     <TimezoneContext.Provider value={currentTimezone}>
       <section className="relative h-[200vh] cursor-default">
-        <BannerTitle />
+        <BannerDvhSize />
         <BannerCanvas />
       </section>
     </TimezoneContext.Provider>

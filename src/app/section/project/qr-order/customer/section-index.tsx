@@ -1,6 +1,12 @@
 import MultiPhoneDevicesView from "../../../../../components/app/section/multi-phone-device-view/section-index";
 import PhoneDeviceView from "../../../../../components/app/section/phone-device-view/section-index";
 import PromotionBanner from "../../../../../components/app/section/promotion-banner/section-index";
+import customer_feature_1_img from "../../../../../assets/project/qr-order/customer/phone-feature-1.png";
+import customer_short_order_process_gif from "../../../../../assets/project/qr-order/customer/short-order-process.gif";
+import customer_category_1_img from "../../../../../assets/project/qr-order/customer/phone-category-1.png";
+import customer_category_2_img from "../../../../../assets/project/qr-order/customer/phone-category-2.png";
+import customer_category_3_img from "../../../../../assets/project/qr-order/customer/phone-category-3.png";
+import qr_order_logo_img from "../../../../../assets/project/qr-order/qr-order-logo.png";
 
 export default function CustomerService() {
   return (
@@ -18,8 +24,8 @@ export default function CustomerService() {
             메뉴판을 확인할 수 있어요.
           </>
         }
-        src="./src/assets/devices/phone.png"
-        alt="phone image"
+        src={customer_feature_1_img}
+        alt="QR ORDER 주문 서비스 초기 접속"
       />
       <PhoneDeviceView
         titleNode={
@@ -32,9 +38,9 @@ export default function CustomerService() {
             전연령 층에서 사용할 수 있도록 인터페이스를 직관적으로 구성했어요.
           </>
         }
-        caution="* 14명의 테스터 절반 이상 사용자 인터페이스 직관적으로 평가"
-        src="./src/assets/devices/phone.png"
-        alt="phone image"
+        caution="*14명의 테스터 중 절반 이상이 긍정적으로 평가했어요"
+        src={customer_short_order_process_gif}
+        alt="QR ORDER 주문 서비스 이용 과정"
         isReverse={true}
       />
       <MultiPhoneDevicesView
@@ -49,16 +55,16 @@ export default function CustomerService() {
           <>
             매장 방문객에게 필요한 요청을 한 곳으로 모았어요.
             <br />
-            메뉴 주문, 테이블 요청, 계산서 확인까지 한 번에 확인할 수 있어요.
+            직원호출, 주문내역, 계산서 확인까지 한 번에 확인할 수 있어요.
           </>
         }
-        caution="*모바일에서는 좌석 조회만 가능"
-        src_1="./src/assets/devices/phone.png"
-        src_2="./src/assets/devices/phone.png"
-        src_3="./src/assets/devices/phone.png"
-        alt_1="phone image"
-        alt_2="phone image"
-        alt_3="phone image"
+        caution="*모바일에서는 좌석 조회만 가능해요"
+        src_1={customer_category_1_img}
+        src_2={customer_category_2_img}
+        src_3={customer_category_3_img}
+        alt_1="QR ORDER 주문 서비스 직원호출 카테고리"
+        alt_2="QR ORDER 주문 서비스 주문내역 카테고리"
+        alt_3="QR ORDER 주문 서비스 계산서 카테고리"
       />
       <PromotionBanner
         hookMentNode={
@@ -67,8 +73,8 @@ export default function CustomerService() {
           </>
         }
         href="https://github.com/inseong01/QR-order-customer"
-        main_product_src="./src/assets/logo.png"
-        main_product_alt="qr order logo"
+        main_product_src={qr_order_logo_img}
+        main_product_alt="qr order 로고"
       />
     </>
   );

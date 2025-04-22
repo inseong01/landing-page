@@ -1,3 +1,5 @@
+import CategoryMovingBG from "./transition-bg";
+
 export default function Category({
   text,
   idx,
@@ -13,7 +15,7 @@ export default function Category({
 
   return (
     <li
-      className={`flex h-full w-[50%] items-center justify-center rounded-4xl text-xl ${clickedIdx === idx ? "bg-[#5A80A5] text-white" : "bg-transparent"} border-2 border-[#5A80A5]`}
+      className={`relative flex h-full w-[50%] items-center justify-center rounded-4xl text-xl ${clickedIdx === idx ? "text-white" : "text-[#5A80A5]"} z-9 overflow-hidden bg-transparent shadow-[0_0px_15px_rgba(0,0,0,0.15)] duration-300`}
     >
       <button
         type="button"
@@ -22,6 +24,7 @@ export default function Category({
       >
         {text}
       </button>
+      <CategoryMovingBG text={text} idx={idx} clickedIdx={clickedIdx} />
     </li>
   );
 }

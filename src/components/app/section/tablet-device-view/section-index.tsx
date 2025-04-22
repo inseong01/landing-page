@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import TabletDevice from "../../device/tablet";
+import CommonSectionFrame from "../frame/section-frame";
 
 type TabletDeviceViewProps = {
   titleNode: ReactNode;
@@ -19,9 +20,9 @@ export default function TabletDeviceView({
   alt,
 }: TabletDeviceViewProps) {
   return (
-    <section className="flex h-svh w-full cursor-default items-center justify-center bg-[#F5F5F5] py-24">
+    <CommonSectionFrame>
       <div
-        className={`flex w-[1000px] items-center justify-between ${isReverse ? "flex-row-reverse" : "flex-row"} gap-20 break-keep`}
+        className={`flex h-full w-[1000px] items-center justify-between ${isReverse ? "flex-row-reverse" : "flex-row"} gap-20 break-keep`}
       >
         <div className="w-full">
           <div className="mb-12">
@@ -32,10 +33,15 @@ export default function TabletDeviceView({
           </div>
           {caution && <p className="text-[#666]">{caution}</p>}
         </div>
-        <div className="relative flex h-fit w-full items-center justify-center">
-          <TabletDevice src={src} alt={alt} />
+        <div className="relative flex h-auto w-full items-center justify-center">
+          <TabletDevice
+            src={src}
+            alt={alt}
+            width="w-[542px]"
+            height="h-[415px]"
+          />
         </div>
       </div>
-    </section>
+    </CommonSectionFrame>
   );
 }
