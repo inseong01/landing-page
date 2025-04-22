@@ -7,7 +7,7 @@ import CanvasElementsGroup from "./canvas-group";
 
 export default function BannerCanvas() {
   return (
-    <Canvas shadows camera={{ position: [0, -150, 0], fov: 50, zoom: 1 }}>
+    <Canvas shadows camera={{ position: [0, -150, 0], fov: 60, zoom: 1 }}>
       <InsideCanvasComp />
     </Canvas>
   );

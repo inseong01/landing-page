@@ -7,7 +7,7 @@ import { setAmbientLightIntensity } from "../../../utils/functions/time/set-ambi
 import SunComp from "./components/component-sun";
 import StarsComp from "./components/component-stars";
 import CloudsComp from "./components/component-clouds";
-import TitleComp from "./components/component-title";
+import DvhScreenComp from "./components/component-dvh";
 import StoryBookViewFrame from "./components/component-frame";
 import "./background.css";
 
@@ -22,7 +22,7 @@ export function BannerBackground({ timezone }: GroupProps) {
   return (
     <TimezoneContext.Provider value={timezone}>
       <StoryBookViewFrame>
-        <TitleComp />
+        <DvhScreenComp />
         <BannerCanvas intensity={intensity} />
       </StoryBookViewFrame>
     </TimezoneContext.Provider>

@@ -1,4 +1,4 @@
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import BannerBackground from "./app/banner/background/background-index";
 import Footer from "./app/footer/footer-index";
 import CategoryTransition from "./app/nav/main/category/transition-index";
@@ -10,18 +10,24 @@ import CustomerService from "./app/section/project/qr-order/customer/section-ind
 import admin_init_tablet_img from "./assets/project/qr-order/admin/init-tablet.png";
 import customer_app_splash_img from "./assets/project/qr-order/overview/overview-phone.png";
 import qr_order_logo_img from "./assets/project/qr-order/qr-order-logo.png";
-
-export const CategoryContext = createContext(0);
-export const SetCategoryContext = createContext<
-  Dispatch<SetStateAction<number>>
->(() => {});
+import {
+  CategoryContext,
+  SetCategoryContext,
+} from "./context/context-project-sub-category";
 
 export default function App() {
   return (
     <div className="h-screen w-full font-[Open_Sans]">
+      <meta name="title" content="landing page" />
       <meta name="author" content="Inseong Yu" />
-      <meta name="keyword" content="React, Threejs" />
-      <meta name="description" content="This is React metadata" />
+      <meta
+        name="keyword"
+        content="React, Threejs, JavaScript, Web Development, Frontend"
+      />
+      <meta
+        name="description"
+        content="inseong 개발자가 최근에 참여한 프로젝트를 확인해보세요"
+      />
       {/* banner */}
       <BannerBackground />
       {/* intro */}

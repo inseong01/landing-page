@@ -1,5 +1,8 @@
 import { useContext } from "react";
-import { CategoryContext, SetCategoryContext } from "../../../../App";
+import {
+  CategoryContext,
+  SetCategoryContext,
+} from "../../../../context/context-project-sub-category";
 import Category from "./transition-item";
 
 type CategoryTransitionProps = { list: string[] };
