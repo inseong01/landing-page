@@ -262,4 +262,10 @@
   - 빌드 점검
   : 이미지 import 적용
 
-<-- git action 작성, 빈 페이지 로딩 설정 -->
+25.4.22.
+  - git action 
+    - pull_request 버전 확인
+
+    - push 자동 배포
+    
+<-- 빈 페이지 로딩 설정 -->
