@@ -28,10 +28,6 @@ export default function App() {
         name="description"
         content="inseong 개발자가 최근에 참여한 프로젝트를 확인해보세요"
       />
-      {/* banner */}
-      <BannerBackground />
-      {/* intro */}
-      <IntroSection />
       {/* overview */}
       <PlatformOverview
         simple_product_info={"방문 고객과 매장 관리자를 위한 웹 애플리케이션"}
@@ -67,3 +63,8 @@ function CategoryProjectBox() {
     </CategoryContext.Provider>
   );
 }
+
+// {/* banner */}
+// <BannerBackground />
+// {/* intro */}
+// <IntroSection />

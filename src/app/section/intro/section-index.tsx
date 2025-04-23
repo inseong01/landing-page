@@ -1,7 +1,7 @@
 export default function IntroSection() {
   return (
     <section className="relative h-[100h] w-full bg-[#F5F5F5] text-[#5A80A5]">
-      <div className="absolute -top-[100vh] m-auto flex h-[100vh] w-full items-end justify-center bg-linear-to-t from-white from-12% to-transparent to-100% px-40 py-15">
+      <div className="absolute -top-[100vh] m-auto flex h-[100vh] w-full items-end justify-center bg-linear-to-t from-white from-12% to-transparent to-100% px-40 py-15 max-xl:px-8">
         <div className="text-4xl font-bold tracking-[5px]">
           프로젝트 살펴보기
         </div>

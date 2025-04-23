@@ -10,7 +10,7 @@ type CategoryTransitionProps = { list: string[] };
 export default function CategoryTransition({ list }: CategoryTransitionProps) {
   return (
     <nav className="bg-[#F5F5F5]">
-      <ul className="m-auto flex h-15 w-[1000px] items-center justify-center gap-5 rounded-4xl text-[#5A80A5]">
+      <ul className="m-auto flex h-auto w-full items-center justify-center gap-5 rounded-4xl px-24 text-[#5A80A5] max-[576px]:px-4 lg:px-16 xl:w-[1000px]">
         <CategoryBox list={list} />
       </ul>
     </nav>

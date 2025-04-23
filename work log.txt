@@ -281,5 +281,16 @@
   - package.json 수정
   : 이름, 버전
 
+25.4.23.
+  - 반응형 작업
+    - 사이즈
+    1280 xl
+    1024 lg
+    768 md
+    640 sm 
+    576 
 
-<-- 빈 페이지 로딩 설정 -->
+  - 완료
+  PlatformOverview, CategoryProjectBox, OtherProjects, Footer
+
+<-- 반응형 마무리, 컴포넌트 모듈화 및 함수 분리, 빈 페이지 로딩 설정 -->

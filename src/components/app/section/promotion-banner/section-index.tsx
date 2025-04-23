@@ -25,15 +25,15 @@ export default function PromotionBanner({
   return (
     <CommonSectionFrame>
       <div className="flex flex-col gap-8">
-        <p className="text-center text-3xl font-bold text-[#5A80A5]">
+        <p className="text-center text-3xl font-bold text-[#5A80A5] max-[576px]:text-2xl">
           {hookMentNode}
         </p>
-        <div className="flex h-[106px] w-[396px]">
+        <div className="flex h-[106px] w-[396px] max-[576px]:h-[70px] max-[576px]:w-[260px]">
           <img src={main_product_src} alt={main_product_alt} />
         </div>
         <div className="text-center">
           <a
-            className="text-xl text-[#5A80A5] hover:underline"
+            className="text-xl text-[#5A80A5] hover:underline max-[576px]:text-lg"
             href={href}
             target="_blank"
           >

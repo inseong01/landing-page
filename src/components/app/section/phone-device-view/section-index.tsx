@@ -22,18 +22,18 @@ export default function PhoneDeviceView({
   return (
     <CommonSectionFrame>
       <div
-        className={`flex w-[1000px] items-center justify-between ${isReverse ? "flex-row-reverse" : "flex-row"} gap-20 break-keep`}
+        className={`flex w-full items-center justify-between max-xl:flex-col xl:h-full xl:w-[1000px] ${isReverse ? "flex-row-reverse" : "flex-row"} gap-20`}
       >
-        <div className="w-full">
-          <div className="mb-12">
-            <h2 className="mb-5 block text-5xl leading-14 font-bold text-[#5A80A5]">
+        <div className="w-full break-keep max-[576px]:px-4 max-[576px]:text-sm">
+          <div className="mb-0 max-[576px]:mb-6 xl:mb-12">
+            <h2 className="mb-5 block text-5xl leading-14 font-bold text-[#5A80A5] max-[576px]:text-4xl max-[576px]:leading-10">
               {titleNode}
             </h2>
-            <p className="text-base- w-70">{descNode}</p>
+            <p className="w-auto xl:w-70">{descNode}</p>
           </div>
-          {caution && <p className="text-[#666]">{caution}</p>}
+          {caution && <p className="m-auto text-[#666]">{caution}</p>}
         </div>
-        <div className="relative flex h-fit w-[60%] items-center justify-center">
+        <div className="relative flex w-[50%] items-center justify-center max-[576px]:w-auto">
           <PhoneDevice
             src={src}
             alt={alt}

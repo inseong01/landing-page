@@ -22,14 +22,14 @@ export default function TabletDeviceView({
   return (
     <CommonSectionFrame>
       <div
-        className={`flex h-full w-[1000px] items-center justify-between ${isReverse ? "flex-row-reverse" : "flex-row"} gap-20 break-keep`}
+        className={`flex h-full w-[1000px] items-center justify-between max-xl:h-auto max-xl:w-full max-xl:flex-col ${isReverse ? "flex-row-reverse" : "flex-row"} gap-12 break-keep`}
       >
-        <div className="w-full">
-          <div className="mb-12">
-            <h2 className="mb-5 block text-5xl leading-14 font-bold text-[#5A80A5]">
+        <div className="w-full max-[576px]:text-sm">
+          <div className="mb-12 max-xl:mb-4">
+            <h2 className="mb-5 block text-5xl leading-14 font-bold text-[#5A80A5] max-[576px]:text-4xl max-[576px]:leading-10">
               {titleNode}
             </h2>
-            <p className="text-base- w-60">{descNode}</p>
+            <p className="w-55 max-xl:m-auto">{descNode}</p>
           </div>
           {caution && <p className="text-[#666]">{caution}</p>}
         </div>
