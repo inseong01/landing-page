@@ -1,15 +1,12 @@
-import { ReactNode } from "react";
-import TabletDevice from "../../device/tablet";
-import CommonSectionFrame from "../frame/section-frame";
+import TabletDevice from "../../../project/device/tablet/tablet-index";
+import CommonSectionFrame from "../frame/frame-index";
+import DescriptionContext, { ContextProps } from "../context/context-index";
 
 type TabletDeviceViewProps = {
-  titleNode: ReactNode;
-  descNode: ReactNode;
   isReverse?: boolean;
-  caution?: string;
   src: string;
   alt: string;
-};
+} & ContextProps;
 
 export default function TabletDeviceView({
   titleNode,
@@ -26,12 +23,12 @@ export default function TabletDeviceView({
       >
         <div className="w-full max-[576px]:text-sm">
           <div className="mb-12 max-xl:mb-4">
-            <h2 className="mb-5 block text-5xl leading-14 font-bold text-[#5A80A5] max-[576px]:text-4xl max-[576px]:leading-10">
-              {titleNode}
-            </h2>
-            <p className="w-55 max-xl:m-auto">{descNode}</p>
+            <DescriptionContext
+              titleNode={titleNode}
+              descNode={descNode}
+              caution={caution}
+            />
           </div>
-          {caution && <p className="text-[#666]">{caution}</p>}
         </div>
         <div className="relative flex h-auto w-full items-center justify-center">
           <TabletDevice

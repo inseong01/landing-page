@@ -1,7 +1,7 @@
 import { useState } from "react";
 import BannerBackground from "./app/banner/background/background-index";
 import Footer from "./app/footer/footer-index";
-import CategoryTransition from "./app/nav/main/category/transition-index";
+import CategoryTransition from "./app/nav/main/product/category/category-index";
 import IntroSection from "./app/section/intro/section-index";
 import PlatformOverview from "./components/app/section/platform-overview/section-index";
 import OtherProjects from "./app/section/other-projects/section-index";
@@ -28,6 +28,10 @@ export default function App() {
         name="description"
         content="inseong 개발자가 최근에 참여한 프로젝트를 확인해보세요"
       />
+      {/* banner */}
+      <BannerBackground />
+      {/* intro */}
+      <IntroSection />
       {/* overview */}
       <PlatformOverview
         simple_product_info={"방문 고객과 매장 관리자를 위한 웹 애플리케이션"}
@@ -55,16 +59,9 @@ function CategoryProjectBox() {
   return (
     <CategoryContext.Provider value={clickedIdx}>
       <SetCategoryContext.Provider value={setClickedIdx}>
-        {/* nav */}
         <CategoryTransition list={["매장 관리", "주문"]} />
-        {/* category project box */}
         {clickedIdx === 0 ? <AdminService /> : <CustomerService />}
       </SetCategoryContext.Provider>
     </CategoryContext.Provider>
   );
 }
-
-// {/* banner */}
-// <BannerBackground />
-// {/* intro */}
-// <IntroSection />

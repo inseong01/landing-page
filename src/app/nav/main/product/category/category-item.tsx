@@ -1,4 +1,4 @@
-import CategoryMovingBG from "./transition-bg";
+import CategoryMovingBG from "./category-bg";
 
 export default function Category({
   text,

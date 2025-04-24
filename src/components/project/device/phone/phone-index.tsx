@@ -13,12 +13,12 @@ export default function PhoneDevice({
 }) {
   return (
     <div
-      className={`flex ${height} ${width} duration-300 perspective-[200px] lg:h-auto lg:w-[380px]`}
+      className={`flex ${height} ${width} perspective-[200px] lg:h-[592px] lg:w-[300px]`}
     >
       <img
         src={src}
         alt={alt}
-        className={`relative rounded-[20px] max-[576px]:rounded-[10px] ${hoverEnable ? "hover:translate-z-9 hover:shadow-[0_0_50px_rgba(0,0,0,0.35)]" : "shadow-[0_0_50px_rgba(0,0,0,0.35)]"} `}
+        className={`relative rounded-[20px] max-[576px]:rounded-[25px] ${hoverEnable ? "xl:hover:translate-z-9 xl:hover:shadow-[0_0_50px_rgba(0,0,0,0.35)]" : "shadow-[0_0_50px_rgba(0,0,0,0.35)]"} duration-300`}
       />
     </div>
   );

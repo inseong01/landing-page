@@ -6,13 +6,17 @@ export default function BannerDvhSize() {
   const today = getDay(dayIdx);
 
   return (
-    <div className="absolute top-0 left-0 z-9 flex h-dvh w-full items-center justify-between px-24 font-bold text-white">
+    <div className="absolute top-0 left-0 z-9 flex h-dvh w-full items-center justify-between px-4 font-bold text-white lg:px-10">
       <div className="left">
-        <h1 className="mb-2 text-7xl max-xl:text-5xl">Today is</h1>
-        <h2 className="mb-20 capitalize max-xl:mb-10 max-xl:text-7xl xl:text-9xl">
+        <h1 className="mb-2 text-5xl max-[576px]:text-3xl lg:text-7xl">
+          Today is
+        </h1>
+        <h2 className="mb-10 text-7xl capitalize max-[576px]:text-5xl lg:text-9xl xl:mb-20">
           {today}.
         </h2>
-        <p className="font-normal tracking-widest">Designed by Inseong</p>
+        <p className="text-lg font-normal tracking-widest max-[576px]:text-sm">
+          Designed by Inseong
+        </p>
       </div>
       <div className="right">
         <span></span>
