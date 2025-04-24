@@ -1,15 +1,12 @@
-import { ReactNode } from "react";
-import TabletDevice from "../../device/tablet";
-import CommonSectionFrame from "../frame/section-frame";
+import TabletDevice from "../../../project/device/tablet/tablet-index";
+import CommonSectionFrame from "../frame/frame-index";
+import DescriptionContext, { ContextProps } from "../context/context-index";
 
 type TabletDeviceViewProps = {
-  titleNode: ReactNode;
-  descNode: ReactNode;
   isReverse?: boolean;
-  caution?: string;
   src: string;
   alt: string;
-};
+} & ContextProps;
 
 export default function TabletDeviceView({
   titleNode,
@@ -22,16 +19,16 @@ export default function TabletDeviceView({
   return (
     <CommonSectionFrame>
       <div
-        className={`flex h-full w-[1000px] items-center justify-between ${isReverse ? "flex-row-reverse" : "flex-row"} gap-20 break-keep`}
+        className={`flex h-full w-[1000px] items-center justify-between max-xl:h-auto max-xl:w-full max-xl:flex-col ${isReverse ? "flex-row-reverse" : "flex-row"} gap-12 break-keep`}
       >
-        <div className="w-full">
-          <div className="mb-12">
-            <h2 className="mb-5 block text-5xl leading-14 font-bold text-[#5A80A5]">
-              {titleNode}
-            </h2>
-            <p className="text-base- w-60">{descNode}</p>
+        <div className="w-full max-[576px]:text-sm">
+          <div className="mb-12 max-xl:mb-4">
+            <DescriptionContext
+              titleNode={titleNode}
+              descNode={descNode}
+              caution={caution}
+            />
           </div>
-          {caution && <p className="text-[#666]">{caution}</p>}
         </div>
         <div className="relative flex h-auto w-full items-center justify-center">
           <TabletDevice

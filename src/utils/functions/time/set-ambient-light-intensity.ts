@@ -14,9 +14,9 @@ import {
  *
  * night/midnight: 0
  *
- * dawn/eveing: 1
+ * dawn/eveing: 1.3
  *
- * morning/afternoon: 1
+ * morning/afternoon: 1 * amount
  *
  * @param timezone 현재 시간 범위
  * @returns 엠비언트 조명 밝기 정도
@@ -30,7 +30,7 @@ export function setAmbientLightIntensity(timezone: string) {
     }
     case DAWN:
     case EVENING: {
-      return 1;
+      return 1.3;
     }
     case MORNING:
     case AFTERNOON: {

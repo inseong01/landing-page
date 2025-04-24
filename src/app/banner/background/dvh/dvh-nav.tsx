@@ -24,7 +24,7 @@ export default function DownMotionNav() {
 
   return (
     <div
-      className={`absolute bottom-10 left-1/2 flex h-10 w-10 items-center justify-center p-2 motion-safe:animate-bounce ${isOn ? "opacity-100" : "opacity-0"} duration-500`}
+      className={`absolute bottom-10 left-1/2 flex h-10 w-10 -translate-x-1/2 items-center justify-center p-2 motion-safe:animate-bounce ${isOn ? "opacity-100" : "opacity-0"} duration-500`}
     >
       <div
         className={`flex h-full w-full rotate-225 items-center justify-center border-t-2 border-l-2 ${bgColor}`}

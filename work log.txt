@@ -281,5 +281,45 @@
   - package.json 수정
   : 이름, 버전
 
+25.4.23.
+  - 반응형 작업
+    - 사이즈
+    1280 xl
+    1024 lg
+    768 md
+    640 sm 
+    576 
+
+  - 완료
+  PlatformOverview, CategoryProjectBox, OtherProjects, Footer
+
+25.4.24.
+  - 반응형 구현
+
+  - 호버 lg 사이즈 동작 조건 부여
+
+  - 푸터 항목 변경 
+
+  - 컴포넌트 모듈화 
+    - 제품 설명, 제품 로고
+
+  - 컴포넌트 함수 분리
+
+  - 디렉터리 구조화
+
+  - 파일명 규칙 통일
+  : <해당 디렉터리명>-<index>
+
+  - 프로젝트 빌드 점검
+
+  - 배너 타이틀 화면 등장 시기 조절
+  : canvas 마운트 되었을 때 페이드 인
+
+  - 엠비언트 조명 밝기 조절
+  : dawn/eveing: 1 -> 1.3
+
+  - yml 파일 오타 수정
+  : action/checkout@4 -> actions/checkout@v4
+
 
 <-- 빈 페이지 로딩 설정 -->

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import BannerBackground from "./app/banner/background/background-index";
 import Footer from "./app/footer/footer-index";
-import CategoryTransition from "./app/nav/main/category/transition-index";
+import CategoryTransition from "./app/nav/main/product/category/category-index";
 import IntroSection from "./app/section/intro/section-index";
 import PlatformOverview from "./components/app/section/platform-overview/section-index";
 import OtherProjects from "./app/section/other-projects/section-index";
@@ -59,9 +59,7 @@ function CategoryProjectBox() {
   return (
     <CategoryContext.Provider value={clickedIdx}>
       <SetCategoryContext.Provider value={setClickedIdx}>
-        {/* nav */}
         <CategoryTransition list={["매장 관리", "주문"]} />
-        {/* category project box */}
         {clickedIdx === 0 ? <AdminService /> : <CustomerService />}
       </SetCategoryContext.Provider>
     </CategoryContext.Provider>
