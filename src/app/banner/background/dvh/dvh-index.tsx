@@ -6,7 +6,7 @@ export default function BannerDvhSize() {
   const today = getDay(dayIdx);
 
   return (
-    <div className="absolute top-0 left-0 z-9 flex h-dvh w-full items-center justify-between px-4 font-bold text-white lg:px-10">
+    <div className="animate-fadeIn absolute top-0 left-0 z-9 flex h-dvh w-full items-center justify-between px-4 font-bold text-white lg:px-10">
       <div className="left">
         <h1 className="mb-2 text-5xl max-[576px]:text-3xl lg:text-7xl">
           Today is
@@ -15,7 +15,7 @@ export default function BannerDvhSize() {
           {today}.
         </h2>
         <p className="text-lg font-normal tracking-widest max-[576px]:text-sm">
-          Designed by Inseong
+          Designed by Inseong.
         </p>
       </div>
       <div className="right">

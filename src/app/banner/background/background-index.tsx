@@ -7,6 +7,7 @@ import BannerDvhSize from "./dvh/dvh-index";
 export default function BannerBackground() {
   const currentHour = new Date().getHours();
   const [hourTrigger, setHourTrigger] = useState(currentHour);
+  const [isCanvasMounted, setCanvasMount] = useState(false);
   const currentTimezone = useMemo(
     () => getCurrnetHourTimezone(currentHour),
     [hourTrigger],
@@ -25,8 +26,8 @@ export default function BannerBackground() {
   return (
     <TimezoneContext.Provider value={currentTimezone}>
       <section className="relative h-[130vh] cursor-default xl:h-[200vh]">
-        <BannerDvhSize />
-        <BannerCanvas />
+        {isCanvasMounted && <BannerDvhSize />}
+        <BannerCanvas setCanvasMount={setCanvasMount} />
       </section>
     </TimezoneContext.Provider>
   );
