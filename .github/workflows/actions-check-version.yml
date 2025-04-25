@@ -5,6 +5,7 @@ run-name: ${{ github.actor }} is comparing package.json version 🚀
 on:
   pull_request:
     branches: [main]
+    paths: "src/**"
 
 jobs:
   check-package-version:
