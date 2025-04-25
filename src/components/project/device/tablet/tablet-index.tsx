@@ -1,17 +1,13 @@
 export default function TabletDevice({
   src,
   alt,
-  width = "max-w-[542px]",
-  height = "max-h-[415px]",
 }: {
   src: string;
   alt: string;
-  width?: string;
-  height?: string;
 }) {
   return (
     <div
-      className={`flex ${height} ${width} items-center justify-center max-[576px]:max-h-[230px] max-[576px]:max-w-[300px] max-lg:h-[345px] max-lg:w-[450px] max-sm:h-[215px] max-sm:w-[280px]`}
+      className={`flex h-[345px] w-[450px] items-center justify-center max-[576px]:h-[230px] max-[576px]:w-[300px] lg:h-[415px] lg:w-[542px]`}
     >
       <img
         src={src}

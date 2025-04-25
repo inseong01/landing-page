@@ -1,19 +1,15 @@
 export default function PhoneDevice({
   src,
   alt,
-  width = "max-w-[250px]",
-  height = "max-h-[494px]",
   hoverEnable,
 }: {
   src: string;
   alt: string;
-  width?: string;
-  height?: string;
   hoverEnable: boolean;
 }) {
   return (
     <div
-      className={`flex ${height} ${width} perspective-[200px] lg:h-[592px] lg:w-[300px]`}
+      className={`flex h-[494px] w-[250px] perspective-[200px] lg:h-[592px] lg:w-[300px]`}
     >
       <img
         src={src}

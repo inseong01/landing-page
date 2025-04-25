@@ -7,9 +7,8 @@ import PlatformOverview from "./components/app/section/platform-overview/section
 import OtherProjects from "./app/section/other-projects/section-index";
 import AdminService from "./app/section/project/qr-order/admin/section-index";
 import CustomerService from "./app/section/project/qr-order/customer/section-index";
-import admin_init_tablet_img from "./assets/project/qr-order/admin/init-tablet.png";
-import customer_app_splash_img from "./assets/project/qr-order/overview/overview-phone.png";
 import qr_order_logo_img from "./assets/project/qr-order/qr-order-logo.png";
+import overview_img from "./assets/project/qr-order/overview/overview-devices.png";
 import {
   CategoryContext,
   SetCategoryContext,
@@ -35,13 +34,11 @@ export default function App() {
       {/* overview */}
       <PlatformOverview
         simple_product_info={"방문 고객과 매장 관리자를 위한 웹 애플리케이션"}
-        main_product_src={qr_order_logo_img}
-        main_product_alt="qr order logo"
+        product_icon_src={qr_order_logo_img}
+        product_icon_alt="qr order logo"
         serviceCategory={"QR 주문 / 매장 관리 서비스"}
-        tablet_src={admin_init_tablet_img}
-        tablet_alt="QR ORDER 관리자 서비스 웹 초기 접속 화면"
-        phone_src={customer_app_splash_img}
-        phone_alt="QR ORDER 주문 서비스 앱 스플래시 이미지"
+        overview_img_src={overview_img}
+        overview_img_alt="QR ORDER 관리자, 고객 서비스 연출 이미지"
       />
       {/* CategoryProjectBox */}
       <CategoryProjectBox />

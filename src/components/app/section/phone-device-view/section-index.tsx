@@ -29,13 +29,7 @@ export default function PhoneDeviceView({
           />
         </div>
         <div className="relative flex w-[50%] items-center justify-center max-[576px]:w-auto">
-          <PhoneDevice
-            src={src}
-            alt={alt}
-            hoverEnable={false}
-            width={"w-[300px]"}
-            height={"h-[592px]"}
-          />
+          <PhoneDevice src={src} alt={alt} hoverEnable={false} />
         </div>
       </div>
     </CommonSectionFrame>
