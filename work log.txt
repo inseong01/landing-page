@@ -321,5 +321,10 @@
   - yml 파일 오타 수정
   : action/checkout@4 -> actions/checkout@v4
 
+25.4.25.
+  - README 개발 컨벤션 작성
+
+  - git actions 조건 추가
+  버전 관리 테스트, src 변경 시 실행 
 
 <-- 빈 페이지 로딩 설정 -->
