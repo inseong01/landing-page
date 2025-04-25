@@ -31,12 +31,7 @@ export default function TabletDeviceView({
           </div>
         </div>
         <div className="relative flex h-auto w-full items-center justify-center">
-          <TabletDevice
-            src={src}
-            alt={alt}
-            width="w-[542px]"
-            height="h-[415px]"
-          />
+          <TabletDevice src={src} alt={alt} />
         </div>
       </div>
     </CommonSectionFrame>
