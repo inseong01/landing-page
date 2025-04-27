@@ -62,13 +62,31 @@ function MobileDeviceBox({
   return (
     <div className="h-full w-full max-[576px]:h-auto">
       <div className="flex h-auto items-center justify-end gap-5 max-xl:flex-row max-xl:justify-center max-lg:flex-col xl:gap-10">
-        <PhoneDevice src={src_1} alt={alt_1} hoverEnable={true} />
+        <PhoneDevice
+          src={src_1}
+          alt={alt_1}
+          hoverEnable={true}
+          lg_width="lg:h-[250px]"
+          lg_height="lg:h-[494px]"
+        />
         <div className="flex h-auto flex-row gap-5 max-[576px]:flex-col xl:flex-col xl:gap-15">
           <div>
-            <PhoneDevice src={src_2} alt={alt_2} hoverEnable={true} />
+            <PhoneDevice
+              src={src_2}
+              alt={alt_2}
+              hoverEnable={true}
+              lg_width="lg:h-[250px]"
+              lg_height="lg:h-[494px]"
+            />
           </div>
           <div>
-            <PhoneDevice src={src_3} alt={alt_3} hoverEnable={true} />
+            <PhoneDevice
+              src={src_3}
+              alt={alt_3}
+              hoverEnable={true}
+              lg_width="lg:h-[250px]"
+              lg_height="lg:h-[494px]"
+            />
           </div>
         </div>
       </div>
