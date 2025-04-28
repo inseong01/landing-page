@@ -1,6 +1,6 @@
 import ProductLogo from "../../../project/product-logo/logo-index";
 
-type PlatformOverviewProps = {
+type ProjectOverviewProps = {
   simple_product_info: string;
   product_icon_src: string;
   product_icon_alt: string;
@@ -9,14 +9,14 @@ type PlatformOverviewProps = {
   overview_img_alt: string;
 };
 
-export default function PlatformOverview({
+export default function ProjectOverview({
   simple_product_info,
   product_icon_src,
   product_icon_alt,
   serviceCategory,
   overview_img_src,
   overview_img_alt,
-}: PlatformOverviewProps) {
+}: ProjectOverviewProps) {
   return (
     <section
       id="overview"

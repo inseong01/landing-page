@@ -15,7 +15,7 @@ export default function BannerDvhSize() {
           {today}.
         </h2>
         <p className="text-lg font-normal tracking-widest max-[576px]:text-sm">
-          Designed by Inseong.
+          새로 출시된 서비스를 확인해보세요.
         </p>
       </div>
       <div className="right">

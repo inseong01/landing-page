@@ -3,7 +3,7 @@ import BannerBackground from "./app/banner/background/background-index";
 import Footer from "./app/footer/footer-index";
 import CategoryTransition from "./app/nav/main/product/category/category-index";
 import IntroSection from "./app/section/intro/section-index";
-import PlatformOverview from "./components/app/section/platform-overview/section-index";
+import ProjectOverview from "./components/app/section/project-overview/section-index";
 import OtherProjects from "./app/section/other-projects/section-index";
 import AdminService from "./app/section/project/qr-order/admin/section-index";
 import CustomerService from "./app/section/project/qr-order/customer/section-index";
@@ -32,7 +32,7 @@ export default function App() {
       {/* intro */}
       <IntroSection />
       {/* overview */}
-      <PlatformOverview
+      <ProjectOverview
         simple_product_info={"방문 고객과 매장 관리자를 위한 웹 애플리케이션"}
         product_icon_src={qr_order_logo_img}
         product_icon_alt="qr order logo"
