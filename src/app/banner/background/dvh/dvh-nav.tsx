@@ -10,7 +10,7 @@ export default function DownMotionNav() {
   useEffect(() => {
     const scrollAnimation = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop < 400) {
+      if (scrollTop < 100) {
         setOn(true);
       } else {
         setOn(false);
