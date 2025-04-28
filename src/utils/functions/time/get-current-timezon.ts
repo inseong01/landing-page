@@ -1,10 +1,16 @@
-export const MIDNIGHT = 'midnight';
-export const DAWN = 'dawn';
-export const MORNING = 'morning';
-export const AFTERNOON = 'afternoon';
-export const EVENING = 'evening';
-export const NIGHT = 'night';
-export type TIMEZONE = 'midnight' | 'dawn' | 'morning' | 'afternoon' | 'evening' | 'night';
+export const MIDNIGHT = "midnight";
+export const DAWN = "dawn";
+export const MORNING = "morning";
+export const AFTERNOON = "afternoon";
+export const EVENING = "evening";
+export const NIGHT = "night";
+export type TIMEZONE =
+  | "midnight"
+  | "dawn"
+  | "morning"
+  | "afternoon"
+  | "evening"
+  | "night";
 
 /**
  * midnight: 0\~4
@@ -39,11 +45,11 @@ export function getCurrnetHourTimezone(hour: number) {
     case 16 <= hour && hour < 20: {
       return EVENING;
     }
-    case 20 <= hour && hour < 25: {
+    case 20 <= hour && hour < 24: {
       return NIGHT;
     }
     default: {
-      throw new Error('Hour error, hour is unavaliable');
+      throw new Error("Hour error, hour is unavaliable");
     }
   }
 }

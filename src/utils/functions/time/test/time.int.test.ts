@@ -1,4 +1,5 @@
-import { describe, expect, test } from '@jest/globals';
+import { describe, expect, test } from "@jest/globals";
+import * as THREE from "three";
 import {
   AFTERNOON,
   DAWN,
@@ -7,12 +8,12 @@ import {
   MIDNIGHT,
   MORNING,
   NIGHT,
-} from '../get-current-timezon';
-import { setAmbientLightIntensity } from '../set-ambient-light-intensity';
-import { setStarAmounts } from '../set-star-amounts';
-import { setSunPosition } from '../set-sun-position';
-import { setSunRayleigh } from '../set-sun-rayleigh';
-import { setSunTurbidity } from '../set-sun-turbidity';
+} from "../get-current-timezon";
+import { setAmbientLightIntensity } from "../set-ambient-light-intensity";
+import { setStarAmounts } from "../set-star-amounts";
+import { setSunPosition } from "../set-sun-position";
+import { setSunRayleigh } from "../set-sun-rayleigh";
+import { setSunTurbidity } from "../set-sun-turbidity";
 
 const testResults = [
   {
@@ -20,68 +21,81 @@ const testResults = [
     timezon: MIDNIGHT,
     intensity: 0.1,
     starAmounts: 1000,
-    sunPosition: [0, 0, 0],
+    sunPosition: new THREE.Vector3(0, 0, 0),
     rayleigh: 0,
     turbidity: 1,
+    error: "",
   },
   {
     hour: 4,
     timezon: DAWN,
-    intensity: 0.5,
+    intensity: 1.3,
     starAmounts: 300,
-    sunPosition: [3, 0.1, 0],
+    sunPosition: new THREE.Vector3(3, 0.1, 0),
     rayleigh: 0.5,
     turbidity: 50,
+    error: "",
   },
   {
     hour: 8,
     timezon: MORNING,
     intensity: 4,
     starAmounts: 0,
-    sunPosition: [5, 3, 0],
+    sunPosition: new THREE.Vector3(5, 3, 0),
     rayleigh: 1,
     turbidity: 1,
+    error: "",
   },
   {
     hour: 12,
     timezon: AFTERNOON,
     intensity: 4,
     starAmounts: 0,
-    sunPosition: [0, 3, 5],
+    sunPosition: new THREE.Vector3(0, 3, 5),
     rayleigh: 1,
     turbidity: 1,
+    error: "",
   },
   {
     hour: 16,
     timezon: EVENING,
-    intensity: 0.5,
+    intensity: 1.3,
     starAmounts: 300,
-    sunPosition: [-3, 0.1, 0],
+    sunPosition: new THREE.Vector3(-3, 0.1, 0),
     rayleigh: 0.5,
     turbidity: 50,
+    error: "",
   },
   {
     hour: 20,
     timezon: NIGHT,
     intensity: 0.1,
     starAmounts: 1000,
-    sunPosition: [0, 0, 0],
+    sunPosition: new THREE.Vector3(0, 0, 0),
     rayleigh: 0,
     turbidity: 1,
+    error: "",
   },
   {
     hour: 24,
-    timezon: NIGHT, // 0시와 동일한 상태
-    intensity: 0.1,
-    starAmounts: 1000,
-    sunPosition: [0, 0, 0],
+    timezon: "undefined",
+    intensity: 0,
+    starAmounts: 0,
+    sunPosition: new THREE.Vector3(0),
     rayleigh: 0,
-    turbidity: 1,
+    turbidity: 0,
+    error: "Hour error, hour is unavaliable",
   },
 ];
 
-describe.each(testResults)('Time integration test, $hour:00', (testValue) => {
+describe.each(testResults)("Time integration test, $hour:00", (testValue) => {
   test(`Boundary test - ${testValue.timezon}`, () => {
+    if (testValue.hour >= 24) {
+      const timezon = () => getCurrnetHourTimezone(testValue.hour);
+      expect(timezon).toThrow(testValue.error);
+      return;
+    }
+
     const timezon = getCurrnetHourTimezone(testValue.hour);
     expect(timezon).toBe(testValue.timezon);
 
