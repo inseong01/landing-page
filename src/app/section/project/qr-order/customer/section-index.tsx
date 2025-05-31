@@ -58,7 +58,7 @@ export default function CustomerService() {
             직원호출, 주문내역, 계산서 확인까지 한 번에 확인할 수 있어요.
           </>
         }
-        caution="*모바일에서는 좌석 조회만 가능해요"
+        caution=""
         src_1={customer_category_1_img}
         src_2={customer_category_2_img}
         src_3={customer_category_3_img}
