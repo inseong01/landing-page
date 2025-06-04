@@ -11,3 +11,17 @@
     }
   }
 }
+
+@layer components {
+  .hide-scroll {
+    /* 웹킷 브라우저 (Chrome, Safari) */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* 기타 브라우저 */
+    &::scroll {
+      display: none;
+    }
+  }
+}
