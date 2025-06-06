@@ -2,10 +2,11 @@ import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 
 import { TIMEZONE } from "../../../utils/functions/time/get-current-timezon";
-import { TimezoneContext } from "../../../context/context-current-time";
+import { TimezoneContext } from "../../../context/context";
+
 import CloudsComp from "./components/component-clouds";
-import "./background.css";
 import StoryBookViewFrame from "./components/component-frame";
+import "./background.css";
 
 export type SkyCloudsProps = {
   /** time based position of sun  */

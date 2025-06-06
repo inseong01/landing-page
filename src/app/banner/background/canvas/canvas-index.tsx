@@ -1,8 +1,10 @@
 import { Canvas } from "@react-three/fiber";
 import { Center } from "@react-three/drei";
 import { Dispatch, SetStateAction, useContext } from "react";
-import { TimezoneContext } from "../../../../context/context-current-time";
+
 import { setAmbientLightIntensity } from "../../../../utils/functions/time/set-ambient-light-intensity";
+import { TimezoneContext } from "../../../../context/context";
+
 import CanvasElementsGroup from "./canvas-group";
 
 export default function BannerCanvas({

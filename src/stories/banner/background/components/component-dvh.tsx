@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { TimezoneContext } from "../../../../context/context-current-time";
+
+import { TimezoneContext } from "../../../../context/context";
 
 export default function DvhScreenComp() {
   return (

@@ -2,7 +2,8 @@ import { Sky } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
 import { TIMEZONE } from "../../../utils/functions/time/get-current-timezon";
-import { TimezoneContext } from "../../../context/context-current-time";
+import { TimezoneContext } from "../../../context/context";
+
 import StarsComp from "./components/component-stars";
 import StoryBookViewFrame from "./components/component-frame";
 import "./background.css";

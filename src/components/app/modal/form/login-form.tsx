@@ -8,7 +8,8 @@ import {
 import { useAtom } from "jotai";
 import { AuthTokenResponsePassword } from "@supabase/supabase-js";
 
-import { loginStateAtom, modalStateAtom } from "../../../../utils/atom/atom";
+import { modalStateAtom } from "../../../../utils/atom/atom";
+
 import { loginAction } from "./actions";
 
 const initState = {} as AuthTokenResponsePassword;
@@ -25,23 +26,38 @@ const initInputErrorState: {
 
 export default function LoginForm() {
   const [state, formAction, isPending] = useActionState(loginAction, initState);
-  const { data, error } = state;
+  const { error } = state;
+
+  const [inputText, setInputText] = useState(initInputValueState);
+  const [inputError, setInputError] = useState(initInputErrorState);
 
   const [, setModalOpen] = useAtom(modalStateAtom);
-  const [, setLoginState] = useAtom(loginStateAtom);
+
+  useEffect(() => {
+    if (error === undefined) return;
+
+    const isServerError = error?.status?.toString().startsWith("4");
+    if (isServerError) {
+      alert("사용자 정보를 찾을 수 없습니다.");
+    } else {
+      setModalOpen(false);
+    }
+
+    alert("로그인 되었습니다.");
+
+    setInputText(initInputValueState);
+    setInputError(initInputErrorState);
+  }, [error, setModalOpen]);
 
   /* 모달 닫기 */
   function onClickCloseModal() {
     setModalOpen(false);
   }
 
-  const [inputText, setInputText] = useState(initInputValueState);
-  const [inputError, setInputError] = useState(initInputErrorState);
-
   /* 입력 함수 */
   function onChangeInput(e: ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
-    const value = e.target.value;
+    const value = e.target.value.trim();
 
     setInputText((prev) => {
       return {
@@ -72,12 +88,19 @@ export default function LoginForm() {
 
       const errorState = Object.keys(inputText).reduce(
         (acc, key) => {
-          const isError = !inputText[key]?.length;
+          let isError = false;
+          let msg = "";
 
-          acc[key] = {
-            isError,
-            msg: isError ? `빈 칸을 입력해주세요` : "",
-          };
+          if (!inputText[key]?.length) {
+            isError = true;
+            msg = "빈 칸을 입력해주세요";
+          } else if (key === "password" && inputText[key]?.length < 6) {
+            isError = true;
+            msg = "6글자 이상이어야 합니다";
+          }
+
+          acc[key] = { isError, msg };
+
           return acc;
         },
         {} as Record<string, { isError: boolean; msg: string }>,
@@ -108,56 +131,6 @@ export default function LoginForm() {
       return;
     }
   }
-
-  useEffect(() => {
-    const isServerError = error?.status?.toString().startsWith("4");
-    if (isServerError) {
-      alert("사용자 정보를 찾을 수 없습니다.");
-
-      setInputText(initInputValueState);
-      setInputError(initInputErrorState);
-
-      return;
-    }
-  }, [error]);
-
-  /* 
-    - useEffect 의존성 문제
-    - 토큰 획득 후 로그인 처리 확인
-    - 새로고침마다 로그인 여부 확인
-  */
-  useEffect(() => {
-    if (!data?.session) return;
-
-    /* 토큰 여부 검증 */
-    const hasAccessToken = data.session.access_token;
-    if (!hasAccessToken) {
-      alert("유효하지 않은 토큰입니다.");
-
-      setLoginState(false);
-      return;
-    }
-
-    /* 토큰 만료 시간 검증 */
-    const now = Math.floor(Date.now() / 1000); // 초 변환
-    const created_at = Math.floor(
-      new Date(data.user.last_sign_in_at!).getTime() / 1000,
-    ); // 초 변환
-    const expires_in = data.session.expires_in; // 초
-
-    const timeElapsed = now - created_at;
-    const isExpired = expires_in <= timeElapsed;
-    console.log(expires_in, now, created_at, timeElapsed, isExpired);
-    if (isExpired) {
-      alert("유효하지 않은 접근입니다.");
-
-      setLoginState(false);
-      return;
-    }
-
-    setLoginState(true);
-    setModalOpen(false);
-  }, [data]);
 
   return (
     <form className="h-full w-full" action={formAction}>
@@ -206,7 +179,7 @@ export default function LoginForm() {
             {/* 이메일 */}
             <div className="flex flex-col gap-1">
               <input
-                type="email"
+                type="text"
                 name="email"
                 className={`w-full rounded-sm border-[1px] p-4 text-sm focus:outline-[#5A80A5] ${inputError["email"].isError ? "border-red-500" : "border-zinc-300"}`}
                 placeholder="이메일을 입력해주세요"
@@ -232,6 +205,7 @@ export default function LoginForm() {
                 onChange={onChangeInput}
                 value={inputText["password"]}
                 required
+                minLength={6}
               />
 
               <div className="flex items-end justify-between text-xs">

@@ -1,13 +1,5 @@
-import { AuthTokenResponsePassword } from "@supabase/supabase-js";
+import { AuthTokenResponsePassword, UserResponse } from "@supabase/supabase-js";
 import { supabase } from "../../../../utils/supabase/supabase";
-
-export function formActions(type: string) {
-  switch (type) {
-    case "login": {
-      return loginAction;
-    }
-  }
-}
 
 export async function loginAction(
   currentState: AuthTokenResponsePassword,
@@ -19,6 +11,19 @@ export async function loginAction(
   const response = await supabase.auth.signInWithPassword({
     email: email,
     password: password,
+  });
+
+  return response;
+}
+
+export async function changePasswordAction(
+  currentState: UserResponse,
+  formData: FormData,
+) {
+  const new_password = formData.get("password")!.toString();
+
+  const response = await supabase.auth.updateUser({
+    password: new_password,
   });
 
   return response;

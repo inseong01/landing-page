@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 
 import { getDay } from "../../../../utils/functions/day/get-day";
 import { loginStateAtom, modalStateAtom } from "../../../../utils/atom/atom";
+import { supabase } from "../../../../utils/supabase/supabase";
 
 import DownMotionNav from "./dvh-nav";
 
@@ -10,12 +11,41 @@ export default function BannerDvhSize() {
   const today = getDay(dayIdx);
 
   const [isLogin] = useAtom(loginStateAtom);
-  const loginTitle = isLogin ? "로그아웃" : "로그인";
 
-  const [, setLoginModalOpen] = useAtom(modalStateAtom);
+  const [, setModalOpen] = useAtom(modalStateAtom);
 
+  /* 로그인 버튼 */
   function onClickLoginBtn() {
-    setLoginModalOpen(true);
+    setModalOpen(true);
+  }
+
+  /* 로그아웃 버튼 */
+  async function onClickLogoutBtn() {
+    // const { data, error } = await supabase.auth.resetPasswordForEmail(
+    //   "insung940@naver.com",
+    // );
+
+    // const new_password = prompt("재설정할 비밀번호를 입력해주세요.", "")!;
+    // console.log(new_password);
+
+    // const { data, error } = await supabase.auth.updateUser({
+    //   password: new_password,
+    // });
+
+    // console.log("data: ", data);
+    // console.log("error: ", error);
+
+    const res = confirm("로그아웃 하시겠습니까?");
+    if (!res) return;
+
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      alert("로그아웃 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      console.error("Unexpected auth error", error.message);
+      return;
+    }
+
+    alert("로그아웃 되었습니다.");
   }
 
   return (
@@ -38,13 +68,23 @@ export default function BannerDvhSize() {
       {/* 우측 */}
       <div className="right flex h-full justify-start">
         {/* 로그인 상태 아이콘 */}
-        <button
-          className="box-content h-[25px] w-[25px] cursor-pointer p-1"
-          title={loginTitle}
-          onClick={onClickLoginBtn}
-        >
-          {isLogin ? <ICON_LOGOUT /> : <ICON_LOGIN />}
-        </button>
+        {!isLogin ? (
+          <button
+            className="box-content h-[25px] w-[25px] cursor-pointer p-1"
+            title="로그아웃"
+            onClick={onClickLogoutBtn}
+          >
+            <ICON_LOGOUT />
+          </button>
+        ) : (
+          <button
+            className="box-content h-[25px] w-[25px] cursor-pointer p-1"
+            title="로그인"
+            onClick={onClickLoginBtn}
+          >
+            <ICON_LOGIN />
+          </button>
+        )}
       </div>
       <DownMotionNav />
     </div>

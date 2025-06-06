@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { Session } from "@supabase/supabase-js";
+import { useAtom } from "jotai";
 
 import { supabase } from "./utils/supabase/supabase";
+import { loginStateAtom } from "./utils/atom/atom";
+
+import { CategoryContext, SetCategoryContext } from "./context/context";
 
 import BannerBackground from "./app/banner/background/background-index";
 import Footer from "./app/footer/footer-index";
@@ -11,30 +14,59 @@ import ProjectOverview from "./components/app/section/project-overview/section-i
 import OtherProjects from "./app/section/other-projects/section-index";
 import AdminService from "./app/section/project/qr-order/admin/section-index";
 import CustomerService from "./app/section/project/qr-order/customer/section-index";
-import qr_order_logo_img from "./assets/project/qr-order/qr-order-logo.png";
-import overview_img from "./assets/project/qr-order/overview/overview-devices.png";
-import {
-  CategoryContext,
-  SetCategoryContext,
-} from "./context/context-project-sub-category";
 import ModalDisplay from "./components/app/modal/modal-index";
 
+import qr_order_logo_img from "./assets/project/qr-order/qr-order-logo.png";
+import overview_img from "./assets/project/qr-order/overview/overview-devices.png";
+
 export default function App() {
-  const [session, setSession] = useState<Session | null>(null);
+  const [, setLoginState] = useAtom(loginStateAtom);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+      switch (_event) {
+        case "INITIAL_SESSION": {
+          if (session === null) {
+            setLoginState(false);
+          } else {
+            setLoginState(true);
+          }
+          console.log("INITIAL_SESSION");
+          return;
+        }
+        case "SIGNED_IN": {
+          setLoginState(true);
+          console.log("SIGNED_IN");
+          return;
+        }
+        case "SIGNED_OUT": {
+          setLoginState(false);
+          console.log("SIGNED_OUT");
+          return;
+        }
+        case "USER_UPDATED": {
+          console.log("USER_UPDATED");
+          return;
+        }
+        case "PASSWORD_RECOVERY": {
+          console.log("PASSWORD_RECOVERY");
+          return;
+        }
+        case "TOKEN_REFRESHED": {
+          console.log("TOKEN_REFRESHED");
+          return;
+        }
+        case "MFA_CHALLENGE_VERIFIED": {
+          console.log("MFA_CHALLENGE_VERIFIED");
+          return;
+        }
+      }
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [setLoginState]);
 
   return (
     <>

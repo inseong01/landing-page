@@ -2,10 +2,11 @@ import { Sky } from "@react-three/drei";
 import { useContext } from "react";
 import * as THREE from "three";
 
-import { TimezoneContext } from "../../../../context/context-current-time";
 import { setSunPosition } from "../../../../utils/functions/time/set-sun-position";
 import { setSunRayleigh } from "../../../../utils/functions/time/set-sun-rayleigh";
 import { setSunTurbidity } from "../../../../utils/functions/time/set-sun-turbidity";
+import { TimezoneContext } from "../../../../context/context";
+
 import { SunProps } from "../background-sun";
 
 export default function SunComp({

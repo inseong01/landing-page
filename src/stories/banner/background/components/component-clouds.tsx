@@ -4,7 +4,8 @@ import * as THREE from "three";
 
 import { setAmbientLightIntensity } from "../../../../utils/functions/time/set-ambient-light-intensity";
 import { setSunPosition } from "../../../../utils/functions/time/set-sun-position";
-import { TimezoneContext } from "../../../../context/context-current-time";
+import { TimezoneContext } from "../../../../context/context";
+
 import { SkyCloudsProps } from "../background-clouds";
 
 export default function CloudsComp({

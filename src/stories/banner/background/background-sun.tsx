@@ -3,7 +3,8 @@ import { Center } from "@react-three/drei";
 import * as THREE from "three";
 
 import { TIMEZONE } from "../../../utils/functions/time/get-current-timezon";
-import { TimezoneContext } from "../../../context/context-current-time";
+import { TimezoneContext } from "../../../context/context";
+
 import SunComp from "./components/component-sun";
 import StoryBookViewFrame from "./components/component-frame";
 

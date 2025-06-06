@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { TimezoneContext } from "../../../../context/context-current-time";
+
+import { TimezoneContext } from "../../../../context/context";
 
 export default function DownMotionNav() {
   const [isOn, setOn] = useState(true);

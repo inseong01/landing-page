@@ -3,11 +3,12 @@ import { useFrame } from "@react-three/fiber";
 import { useContext, useEffect, useRef } from "react";
 import { Sky as SkyImpl } from "three-stdlib";
 import * as THREE from "three";
-import { TimezoneContext } from "../../../../../context/context-current-time";
+
 import { setSunRayleigh } from "../../../../../utils/functions/time/set-sun-rayleigh";
 import { setSunPosition } from "../../../../../utils/functions/time/set-sun-position";
 import { setSunTurbidity } from "../../../../../utils/functions/time/set-sun-turbidity";
 import { getCurrnetHourTimezone } from "../../../../../utils/functions/time/get-current-timezon";
+import { TimezoneContext } from "../../../../../context/context";
 
 export default function SkySun() {
   /* sky */

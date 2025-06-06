@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { Stars } from "@react-three/drei";
+
 import { setStarAmounts } from "../../../../../utils/functions/time/set-star-amounts";
-import { TimezoneContext } from "../../../../../context/context-current-time";
+
+import { TimezoneContext } from "../../../../../context/context";
 
 export default function SkyStars() {
   const timezone = useContext(TimezoneContext);
