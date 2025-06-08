@@ -1,5 +1,6 @@
 import { AuthTokenResponsePassword, UserResponse } from "@supabase/supabase-js";
-import { supabase } from "../../../../utils/supabase/supabase";
+
+import { supabase } from "../supabase/supabase";
 
 export async function loginAction(
   currentState: AuthTokenResponsePassword,
@@ -16,7 +17,7 @@ export async function loginAction(
   return response;
 }
 
-export async function changePasswordAction(
+export async function updatePasswordAction(
   currentState: UserResponse,
   formData: FormData,
 ) {

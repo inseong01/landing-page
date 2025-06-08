@@ -14,7 +14,7 @@ import ProjectOverview from "./components/app/section/project-overview/section-i
 import OtherProjects from "./app/section/other-projects/section-index";
 import AdminService from "./app/section/project/qr-order/admin/section-index";
 import CustomerService from "./app/section/project/qr-order/customer/section-index";
-import ModalDisplay from "./components/app/modal/modal-index";
+import ModalDisplay from "./feature/modal/modal-index";
 
 import qr_order_logo_img from "./assets/project/qr-order/qr-order-logo.png";
 import overview_img from "./assets/project/qr-order/overview/overview-devices.png";
@@ -33,33 +33,14 @@ export default function App() {
           } else {
             setLoginState(true);
           }
-          console.log("INITIAL_SESSION");
           return;
         }
         case "SIGNED_IN": {
           setLoginState(true);
-          console.log("SIGNED_IN");
           return;
         }
         case "SIGNED_OUT": {
           setLoginState(false);
-          console.log("SIGNED_OUT");
-          return;
-        }
-        case "USER_UPDATED": {
-          console.log("USER_UPDATED");
-          return;
-        }
-        case "PASSWORD_RECOVERY": {
-          console.log("PASSWORD_RECOVERY");
-          return;
-        }
-        case "TOKEN_REFRESHED": {
-          console.log("TOKEN_REFRESHED");
-          return;
-        }
-        case "MFA_CHALLENGE_VERIFIED": {
-          console.log("MFA_CHALLENGE_VERIFIED");
           return;
         }
       }

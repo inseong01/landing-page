@@ -21,27 +21,12 @@ export default function BannerDvhSize() {
 
   /* 로그아웃 버튼 */
   async function onClickLogoutBtn() {
-    // const { data, error } = await supabase.auth.resetPasswordForEmail(
-    //   "insung940@naver.com",
-    // );
-
-    // const new_password = prompt("재설정할 비밀번호를 입력해주세요.", "")!;
-    // console.log(new_password);
-
-    // const { data, error } = await supabase.auth.updateUser({
-    //   password: new_password,
-    // });
-
-    // console.log("data: ", data);
-    // console.log("error: ", error);
-
     const res = confirm("로그아웃 하시겠습니까?");
     if (!res) return;
 
     const { error } = await supabase.auth.signOut();
     if (error) {
       alert("로그아웃 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
-      console.error("Unexpected auth error", error.message);
       return;
     }
 
@@ -68,7 +53,7 @@ export default function BannerDvhSize() {
       {/* 우측 */}
       <div className="right flex h-full justify-start">
         {/* 로그인 상태 아이콘 */}
-        {!isLogin ? (
+        {isLogin ? (
           <button
             className="box-content h-[25px] w-[25px] cursor-pointer p-1"
             title="로그아웃"

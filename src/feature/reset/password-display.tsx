@@ -8,19 +8,17 @@ import {
 import { useNavigate } from "react-router";
 import { UserResponse } from "@supabase/supabase-js";
 
-import { changePasswordAction } from "../../components/app/modal/form/actions";
+import { updatePasswordAction } from "../../utils/form/actions";
+import {
+  initInputErrorState,
+  initInputValueState,
+} from "../../utils/const/common";
+
+import InputErrorMessage from "../../components/app/form/input-error-message/message-index";
+import SubmitButton from "../../components/app/form/submit-button/button-index";
+import FormTitle from "../../components/app/form/title/title-index";
 
 const initState = {} as UserResponse;
-const initInputValueState: { [key: string]: string } = {
-  email: "",
-  password: "",
-};
-const initInputErrorState: {
-  [key: string]: { isError: boolean; msg: string };
-} = {
-  email: { isError: false, msg: "" },
-  password: { isError: false, msg: "" },
-};
 
 // react-router
 // https://reactrouter.com/start/declarative/navigating
@@ -28,17 +26,9 @@ const initInputErrorState: {
 // supabase auth
 // https://supabase.com/docs/reference/javascript/explain
 
-/*
-  - 입력창 오류 확인 점검 완료
-
-  - 제출 정상 처리 점검 필요 (+라우터 이동)
-  - 제출 비정상 처리 점검 필요 
-
-  - 이메일 리다이렉션 링크 설정
-*/
 export default function ResetPasswordDisplay() {
   const [state, formAction, isPending] = useActionState(
-    changePasswordAction,
+    updatePasswordAction,
     initState,
   );
 
@@ -88,34 +78,39 @@ export default function ResetPasswordDisplay() {
   }
 
   /* 제출 버튼 */
-  function onClickSubmitButton(e: MouseEvent<HTMLButtonElement>) {
+  async function onClickSubmitButton(e: MouseEvent<HTMLButtonElement>) {
     // 빈 형식 검증
-    const isInputEmpty = Object.entries(inputText).some(
-      ([, value]) => value.length === 0,
-    );
+    const isInputEmpty = inputText["password"].length === 0;
     if (isInputEmpty) {
       e.preventDefault();
 
-      const errorState = Object.keys(inputText).reduce(
-        (acc, key) => {
-          let isError = false;
-          let msg = "";
+      setInputError((prev) => {
+        return {
+          ...prev,
+          password: {
+            isError: isInputEmpty,
+            msg: "빈 칸을 입력해주세요.",
+          },
+        };
+      });
 
-          if (!inputText[key]?.length) {
-            isError = true;
-            msg = "빈 칸을 입력해주세요";
-          } else if (inputText[key]?.length < 6) {
-            isError = true;
-            msg = "6글자 이상이어야 합니다";
-          }
+      return;
+    }
 
-          acc[key] = { isError, msg };
-          return acc;
-        },
-        {} as Record<string, { isError: boolean; msg: string }>,
-      );
+    // 최소 글자 수 검증
+    const isInputMinLength = inputText["password"].length < 6;
+    if (isInputMinLength) {
+      e.preventDefault();
 
-      setInputError(errorState);
+      setInputError((prev) => {
+        return {
+          ...prev,
+          password: {
+            isError: isInputEmpty,
+            msg: "6글자 이상이어야 합니다.",
+          },
+        };
+      });
 
       return;
     }
@@ -124,8 +119,8 @@ export default function ResetPasswordDisplay() {
   return (
     <form action={formAction} className="flex w-full flex-col gap-4">
       {/* 제목 박스 */}
-      <div className="cursor-default text-xl">
-        <span>비밀번호 재설정</span>
+      <div>
+        <FormTitle text="비밀번호 재설정" />
       </div>
 
       {/* 입력 박스 */}
@@ -135,7 +130,7 @@ export default function ResetPasswordDisplay() {
             type="password"
             name="password"
             className={`w-full rounded-sm border-[1px] p-4 text-sm focus:outline-[#5A80A5] ${inputError["password"].isError ? "border-red-500" : "border-zinc-300"}`}
-            placeholder="재설정할 비밀번호를 입력해주세요"
+            placeholder="새로운 비밀번호를 입력해주세요"
             onChange={onChangeInput}
             value={inputText["password"]}
             required
@@ -144,22 +139,18 @@ export default function ResetPasswordDisplay() {
         </div>
 
         <div className="flex">
-          <span className="cursor-default text-xs text-red-500">
-            {inputError["password"].msg}
-          </span>
+          {/* 오류 메시지 */}
+          <InputErrorMessage msg={inputError["password"].msg} />
         </div>
       </div>
 
       {/* 제출버튼 */}
       <div className="flex flex-col gap-2">
-        <button
-          type="submit"
-          className="flex-1 cursor-pointer rounded-sm border-[1px] border-[#5A80A5] bg-[#5A80A5] p-4 text-sm text-white hover:bg-[#486684]"
+        <SubmitButton
           disabled={isPending}
           onClick={onClickSubmitButton}
-        >
-          변경하기
-        </button>
+          text={"변경하기"}
+        />
       </div>
     </form>
   );

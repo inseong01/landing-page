@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useAtom } from "jotai";
 import ReactModal from "react-modal";
 
-import { modalStateAtom } from "../../../utils/atom/atom";
+import { modalStateAtom } from "../../utils/atom/atom";
 
 import LoginForm from "./form/login-form";
 
