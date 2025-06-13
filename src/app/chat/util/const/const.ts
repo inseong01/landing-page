@@ -1,12 +1,13 @@
-import type { REALTIME_LISTEN_TYPES } from '@supabase/supabase-js';
-import { getRandomNickname } from '@woowa-babble/random-nickname';
-import { v1 as uuidv1 } from 'uuid';
+import type { REALTIME_LISTEN_TYPES } from "@supabase/supabase-js";
+import { v1 as uuidv1 } from "uuid";
+
+import { getRandomNickname } from "../../../../utils/function/get-nick-name";
 
 export const USER_ID = uuidv1();
 
-export const NICK_NAME = getRandomNickname('animals');
+export const NICK_NAME = getRandomNickname("animals");
 
-export const ADMIN_ID = '99478830-3d2d-11f0-a097-1780455c1367';
+export const ADMIN_ID = "99478830-3d2d-11f0-a097-1780455c1367";
 
 export const initOpponentState = { isAdminOnline: false, isAdminTyping: false };
 
@@ -24,13 +25,13 @@ export type MessageMetaData = {
 };
 
 export const initMessage: MessageMetaData = {
-  type: 'broadcast',
-  event: '',
+  type: "broadcast",
+  event: "",
   payload: {
-    id: '',
-    text: 'Welcome!',
-    sent_at: '',
-    receiver_id: '',
+    id: "",
+    text: "Welcome!",
+    sent_at: "",
+    receiver_id: "",
     isTyping: false,
     isRead: false,
   },
@@ -38,13 +39,13 @@ export const initMessage: MessageMetaData = {
 
 export const initMessagesArr: MessageMetaData[] = [
   {
-    type: 'broadcast',
-    event: '',
+    type: "broadcast",
+    event: "",
     payload: {
-      id: '',
-      text: 'Welcome!',
-      sent_at: '',
-      receiver_id: '',
+      id: "",
+      text: "Welcome!",
+      sent_at: "",
+      receiver_id: "",
       isTyping: false,
       isRead: false,
     },
