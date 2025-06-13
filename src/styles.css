@@ -10,4 +10,32 @@
       opacity: 1;
     }
   }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(80%);
+    }
+    50% {
+      transform: scale(100%);
+    }
+    100% {
+      transform: scale(80%);
+    }
+  }
+}
+
+@layer utilities {
+  .box-content {
+    box-sizing: content-box !important;
+  }
+}
+
+@layer base {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html {
+    scrollbar-width: none;
+  }
 }

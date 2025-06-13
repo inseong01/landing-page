@@ -94,7 +94,6 @@
   - fix\_
 
     - 페이지 오류가 있는 경우 수정 작업하는 브랜치
-  
     - \<fix\_작업 컴포넌트\_수정 오류 유형\> 형식으로 작명
 
     - 스네이크 케이스로 작성
@@ -208,9 +207,7 @@
 
 - 메인 디렉터리는 명시적으로 작성
 
-- 세부 설명이 필요한 경우 **케밥 케이스**로 작성성
-
-- 어디서 사용되는지 알 수 있으면 디렉터리 구조가 깊어도 상관없음
+- 세부 설명이 필요한 경우 **케밥 케이스**로 작성
 
 - 최대한 디렉터리 공통되도록 구조화
 
@@ -262,11 +259,10 @@
   src
   └── app
       └── banner
-          └── background
-              └── canvas
-                  └── canvas-index.tsx    // canvas 메인 컴포넌트 파일
-                  └── canvas-group.tsx    // canvas 서브 컴포넌트 파일
-                  └── elements            // canvas elements 컴포넌트 디렉터리
+          └── background-canvas
+              └── canvas-index.tsx    // canvas 메인 컴포넌트 파일
+              └── canvas-group.tsx    // canvas 서브 컴포넌트 파일
+              └── elements            // canvas elements 컴포넌트 디렉터리
 
   ```
 
@@ -283,11 +279,13 @@
 
 - feature  
   사용자 기능 보관
+
 - hooks  
   커스텀 훅 보관
 
 - stories  
   스토리북 스토리 보관
+
 - utils  
   함수, 타입, 코드 유틸리티 보관
 
@@ -329,7 +327,7 @@ describe.each(testCases)(`Day unit test, index is $input`, (testValue) => {
 **결과**
 
 ```
-PASS  src/utils/functions/day/test/day.unit.test.ts
+PASS  ./src/app/banner/function/day/get-day.ts
 Day unit test, index is 0
   √ Expected: Sunday (3ms)
 Day unit test, index is 6

@@ -1,9 +1,9 @@
 import { Stars } from "@react-three/drei";
 import { useContext } from "react";
 
-import { TimezoneContext } from "../../../../context/context-current-time";
-import { setStarAmounts } from "../../../../utils/functions/time/set-star-amounts";
 import { SkyStarsProps } from "../background-stars";
+import { TimezoneContext } from "../../../../app/banner/context";
+import { setStarAmounts } from "../../../../app/banner/background-canvas/functions/time/set-star-amounts";
 
 export default function StarsComp({
   factorSize,
