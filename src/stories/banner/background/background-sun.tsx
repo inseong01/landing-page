@@ -2,8 +2,9 @@ import { Canvas } from "@react-three/fiber";
 import { Center } from "@react-three/drei";
 import * as THREE from "three";
 
-import { TIMEZONE } from "../../../utils/functions/time/get-current-timezon";
-import { TimezoneContext } from "../../../context/context-current-time";
+import { TIMEZONE } from "../../../app/banner/background-canvas/functions/time/get-current-timezon";
+import { TimezoneContext } from "../../../app/banner/context";
+
 import SunComp from "./components/component-sun";
 import StoryBookViewFrame from "./components/component-frame";
 

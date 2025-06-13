@@ -2,11 +2,11 @@ import { Sky } from "@react-three/drei";
 import { useContext } from "react";
 import * as THREE from "three";
 
-import { TimezoneContext } from "../../../../context/context-current-time";
-import { setSunPosition } from "../../../../utils/functions/time/set-sun-position";
-import { setSunRayleigh } from "../../../../utils/functions/time/set-sun-rayleigh";
-import { setSunTurbidity } from "../../../../utils/functions/time/set-sun-turbidity";
 import { SunProps } from "../background-sun";
+import { TimezoneContext } from "../../../../app/banner/context";
+import { setSunPosition } from "../../../../app/banner/background-canvas/functions/time/set-sun-position";
+import { setSunRayleigh } from "../../../../app/banner/background-canvas/functions/time/set-sun-rayleigh";
+import { setSunTurbidity } from "../../../../app/banner/background-canvas/functions/time/set-sun-turbidity";
 
 export default function SunComp({
   isManualMode,

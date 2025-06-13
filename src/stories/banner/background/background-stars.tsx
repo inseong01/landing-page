@@ -1,11 +1,12 @@
 import { Sky } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
-import { TIMEZONE } from "../../../utils/functions/time/get-current-timezon";
-import { TimezoneContext } from "../../../context/context-current-time";
+import { TIMEZONE } from "../../../app/banner/background-canvas/functions/time/get-current-timezon";
+import { TimezoneContext } from "../../../app/banner/context";
+
+import "./background.css";
 import StarsComp from "./components/component-stars";
 import StoryBookViewFrame from "./components/component-frame";
-import "./background.css";
 
 export type SkyStarsProps = {
   /** time based position of stars */
