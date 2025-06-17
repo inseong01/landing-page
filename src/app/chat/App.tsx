@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from "react";
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 
 import {
   SetIconClickContext,
@@ -13,6 +13,7 @@ import {
   type MessageMetaData,
 } from "./util/const/const";
 import { supabase } from "./util/supabase/supabase-client";
+import { reconnectionAtom } from "./util/store/atom";
 import { canvasMountAtom } from "../../utils/store/atoms";
 
 import { initVisitorAppState, visitorReducer } from "./feature/visitor/reducer";
@@ -20,19 +21,18 @@ import {
   VisitorDispatchContext,
   VisitorReducerStateContext,
 } from "./feature/visitor/context";
-import VisitorChatMode from "./feature/visitor/visitor-index";
+import ChatRoomDisplay from "./feature/visitor/visitor-index";
 
 import ChattingAppIcon from "./components/icon/icon-index";
 
 export default function ChatApp() {
   const [isIconClicked, setIconClick] = useState(false);
-  const [isCanvasMounted] = useAtom(canvasMountAtom);
-
   const [visitorState, visitorDispatch] = useReducer(
     visitorReducer,
     initVisitorAppState,
   );
-
+  const isCanvasMounted = useAtomValue(canvasMountAtom);
+  const reconnection = useAtomValue(reconnectionAtom);
   const isAppOpenedRef = useRef(isIconClicked);
 
   const ID = localStorage.getItem("user_id") ?? USER_ID;
@@ -100,7 +100,6 @@ export default function ChatApp() {
         const isAdminOnline = Object.hasOwn(newState, adminID);
 
         if (!isAdminOnline) return;
-
         const key = adminID;
 
         visitorDispatch({
@@ -149,7 +148,7 @@ export default function ChatApp() {
     return () => {
       MY_CHANNEL.unsubscribe();
     };
-  }, [ID, NAME]);
+  }, [ID, NAME, reconnection]);
 
   const visitorReceivedMsgCount = visitorState.messages.reduce((acc, msg) => {
     return acc + (!msg.payload.isRead && msg.payload.id !== ID ? 1 : 0);
@@ -171,7 +170,7 @@ export default function ChatApp() {
             <VisitorReducerStateContext.Provider value={visitorState}>
               <VisitorDispatchContext.Provider value={visitorDispatch}>
                 {/* 채팅방 - 방문자 */}
-                <VisitorChatMode />
+                <ChatRoomDisplay />
               </VisitorDispatchContext.Provider>
             </VisitorReducerStateContext.Provider>
           )}

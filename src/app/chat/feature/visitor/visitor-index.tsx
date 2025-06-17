@@ -1,7 +1,8 @@
 import { useContext, useEffect } from "react";
+import { useSetAtom } from "jotai";
 
-import { type MessageMetaData } from "../../util/const/const";
 import { UserIDContextContext } from "../../util/context/global";
+import { reconnectionAtom } from "../../util/store/atom";
 
 import { VisitorDispatchContext, VisitorReducerStateContext } from "./context";
 
@@ -9,21 +10,12 @@ import ChatHeader from "../../components/chat/header/heaer-index";
 import ChatFooter from "../../components/chat/footer/footer-index";
 import ChatBody from "../../components/chat/body/body-index";
 
-export default function VisitorChatMode() {
-  const state = useContext(VisitorReducerStateContext);
-
-  return (
-    <>
-      {/* 채팅방 */}
-      <ChatRoomDisplay messages={state.messages} />
-    </>
-  );
-}
-
-function ChatRoomDisplay({ messages }: { messages: MessageMetaData[] }) {
+export default function ChatRoomDisplay() {
   const { adminStatus } = useContext(VisitorReducerStateContext);
+  const visitorState = useContext(VisitorReducerStateContext);
   const reducer = useContext(VisitorDispatchContext);
   const USER_ID = useContext(UserIDContextContext);
+  const toggleReconnection = useSetAtom(reconnectionAtom);
 
   /* 윈도우 포커스 여부 */
   useEffect(() => {
@@ -34,6 +26,7 @@ function ChatRoomDisplay({ messages }: { messages: MessageMetaData[] }) {
       if (!reducer) return;
       if (document.visibilityState === "visible") {
         reducer({ type: "READ_MESSAGE" });
+        toggleReconnection((prev) => !prev);
       }
     }
 
@@ -54,7 +47,7 @@ function ChatRoomDisplay({ messages }: { messages: MessageMetaData[] }) {
       <ChatHeader opponentType="상담사" opponentStatus={statusString} />
 
       {/* 메인 */}
-      <ChatBody messages={messages} isOpponentTyping={isTyping} />
+      <ChatBody messages={visitorState.messages} isOpponentTyping={isTyping} />
 
       {/* 푸터 */}
       <ChatFooter
