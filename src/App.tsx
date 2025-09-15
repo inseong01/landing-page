@@ -16,21 +16,17 @@ import ProjectOverview from "./components/app/section/project-overview/section-i
 import qr_order_logo_img from "./assets/project/qr-order/qr-order-logo.png";
 import overview_img from "./assets/project/qr-order/overview/overview-devices.png";
 
-const LazyChatApp = lazy(() => import("./app/chat/App"));
+const LazyChatApp = lazy(() => import("./app/chat"));
 
 export default function App() {
   return (
     <div className="h-screen w-full font-[Noto_Sans]">
-      <meta name="title" content="landing page" />
       <meta name="author" content="Inseong Yu" />
       <meta
         name="keyword"
-        content="React, Threejs, JavaScript, Web Development, Frontend"
+        content="React, JavaScript, Web Development, Frontend"
       />
-      <meta
-        name="description"
-        content="inseong 개발자가 최근에 참여한 프로젝트를 확인해보세요"
-      />
+      <meta name="description" content="새로운 프로젝트를 확인해보세요" />
 
       {/* banner */}
       <BannerSection />
