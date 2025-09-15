@@ -14,7 +14,6 @@ import {
 } from "./util/const/const";
 import { supabase } from "./util/supabase/supabase-client";
 import { reconnectionAtom } from "./util/store/atom";
-import { canvasMountAtom } from "../../utils/store/atoms";
 
 import { initVisitorAppState, visitorReducer } from "./feature/visitor/reducer";
 import {
@@ -31,7 +30,6 @@ export default function ChatApp() {
     visitorReducer,
     initVisitorAppState,
   );
-  const isCanvasMounted = useAtomValue(canvasMountAtom);
   const reconnection = useAtomValue(reconnectionAtom);
   const isAppOpenedRef = useRef(isIconClicked);
 
@@ -157,7 +155,7 @@ export default function ChatApp() {
     visitorReceivedMsgCount > 0
       ? `: 새로운 알림 ${visitorReceivedMsgCount > 99 ? "99+" : visitorReceivedMsgCount} 개`
       : "";
-  const msgAlertMention = `랜딩 ${msgCountMention}`;
+  const msgAlertMention = `Inseong | info ${msgCountMention}`;
 
   return (
     <>
@@ -177,9 +175,7 @@ export default function ChatApp() {
         </UserIDContextContext.Provider>
 
         {/* 채팅방 아이콘 */}
-        {isCanvasMounted && (
-          <ChattingAppIcon hasMsgAlert={msgCountMention.length > 0} />
-        )}
+        <ChattingAppIcon hasMsgAlert={msgCountMention.length > 0} />
       </SetIconClickContext.Provider>
     </>
   );

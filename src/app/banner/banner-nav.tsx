@@ -1,13 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-
-import { TimezoneContext } from "../context";
+import { useEffect, useState } from "react";
 
 export default function DownMotionNav() {
   const [isOn, setOn] = useState(true);
-  const timezone = useContext(TimezoneContext);
 
-  const isDarkness = timezone === "night" || timezone === "midnight";
-  const bgColor = isDarkness ? "border-[#ffffffb0]" : "border-[#2222225e]";
+  const bgColor = "border-[#ffffffb0]";
 
   useEffect(() => {
     const scrollAnimation = () => {
