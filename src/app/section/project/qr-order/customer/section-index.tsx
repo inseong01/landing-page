@@ -1,12 +1,13 @@
-import MultiPhoneDevicesView from "../../../../../components/app/section/multi-phone-device-view/section-index";
-import PhoneDeviceView from "../../../../../components/app/section/phone-device-view/section-index";
-import PromotionBanner from "../../../../../components/app/section/promotion-banner/section-index";
-import customer_feature_1_img from "../../../../../assets/project/qr-order/customer/phone-feature-1.png";
-import customer_short_order_process_gif from "../../../../../assets/project/qr-order/customer/short-order-process.gif";
-import customer_category_1_img from "../../../../../assets/project/qr-order/customer/phone-category-1.png";
-import customer_category_2_img from "../../../../../assets/project/qr-order/customer/phone-category-2.png";
-import customer_category_3_img from "../../../../../assets/project/qr-order/customer/phone-category-3.png";
-import qr_order_logo_img from "../../../../../assets/project/qr-order/qr-order-logo.png";
+import qr_order_logo_img from "@/assets/project/qr-order/qr-order-logo.png";
+import customer_feature_1_img from "@/assets/project/qr-order/customer/phone-feature-1.png";
+import customer_short_order_process_gif from "@/assets/project/qr-order/customer/short-order-process.gif";
+import customer_category_1_img from "@/assets/project/qr-order/customer/phone-category-1.png";
+import customer_category_2_img from "@/assets/project/qr-order/customer/phone-category-2.png";
+import customer_category_3_img from "@/assets/project/qr-order/customer/phone-category-3.png";
+
+import PromotionBanner from "@/components/app/section/promotion-banner/section-index";
+import PhoneDeviceView from "@/components/app/section/phone-device-view/section-index";
+import MultiPhoneDevicesView from "@/components/app/section/multi-phone-device-view/section-index";
 
 export default function CustomerService() {
   return (
