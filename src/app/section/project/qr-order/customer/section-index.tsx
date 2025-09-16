@@ -1,6 +1,7 @@
 import qr_order_logo_img from "@/assets/project/qr-order/qr-order-logo.png";
 import customer_feature_1_img from "@/assets/project/qr-order/customer/phone-feature-1.png";
-import customer_short_order_process_gif from "@/assets/project/qr-order/customer/short-order-process.gif";
+// import customer_short_order_process_gif from "@/assets/project/qr-order/customer/short-order-process.gif";
+import customer_short_order_process_webp from "@/assets/project/qr-order/customer/short-order-process-resize.webp";
 import customer_category_1_img from "@/assets/project/qr-order/customer/phone-category-1.png";
 import customer_category_2_img from "@/assets/project/qr-order/customer/phone-category-2.png";
 import customer_category_3_img from "@/assets/project/qr-order/customer/phone-category-3.png";
@@ -40,7 +41,7 @@ export default function CustomerService() {
           </>
         }
         caution="*14명의 테스터 중 절반 이상이 긍정적으로 평가했어요"
-        src={customer_short_order_process_gif}
+        src={customer_short_order_process_webp}
         alt="QR ORDER 주문 서비스 이용 과정"
         isReverse={true}
       />
