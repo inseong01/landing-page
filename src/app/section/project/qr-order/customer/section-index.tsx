@@ -1,6 +1,5 @@
 import qr_order_logo_img from "@/assets/project/qr-order/qr-order-logo.png";
 import customer_feature_1_img from "@/assets/project/qr-order/customer/phone-feature-1.png";
-// import customer_short_order_process_gif from "@/assets/project/qr-order/customer/short-order-process.gif";
 import customer_short_order_process_webp from "@/assets/project/qr-order/customer/short-order-process-resize.webp";
 import customer_category_1_img from "@/assets/project/qr-order/customer/phone-category-1.png";
 import customer_category_2_img from "@/assets/project/qr-order/customer/phone-category-2.png";

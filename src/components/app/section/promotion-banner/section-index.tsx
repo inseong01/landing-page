@@ -39,6 +39,7 @@ function CurrentProjectRepositoryLink({ href }: { href: string }) {
       className="text-xl text-[#5A80A5] max-[576px]:text-lg xl:hover:underline"
       href={href}
       target="_blank"
+      aria-label="지금 보고 있는 프로젝트 깃허브 저장소 방문"
     >
       깃허브 저장소 훑어보기
     </a>

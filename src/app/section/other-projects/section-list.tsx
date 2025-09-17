@@ -32,7 +32,7 @@ export default function ProjectList({
         </div>
       </div>
 
-      {/* 새창 열기 */}
+      {/* 프로젝트 새창 열기 */}
       <div className="flex w-full justify-end max-sm:w-auto">
         <LinkConnectButton href={href} />
       </div>
@@ -46,6 +46,7 @@ function LinkConnectButton({ href }: { href: string }) {
       href={href}
       className="flex h-10 w-10 items-center justify-center rounded-[50%] bg-white p-2.5 max-sm:h-7 max-sm:w-7 max-sm:p-1.5"
       target="_blank"
+      aria-label="프로젝트 자세히 보기"
     >
       <MoveWindowSvgIcon />
     </a>
