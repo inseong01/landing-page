@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  /* 애니메이션 */
+  --animate-fadeIn: fadeIn 1s ease-in-out;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(80%);
+    }
+    50% {
+      transform: scale(100%);
+    }
+    100% {
+      transform: scale(80%);
+    }
+  }
+
+  /* 변수 */
+  --color-section-p: #555;
+  --color-section-c: #999;
+}
+
+@layer utilities {
+  .box-content {
+    box-sizing: content-box !important;
+  }
+}
+
+@layer base {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html {
+    scrollbar-width: none;
+  }
+}
