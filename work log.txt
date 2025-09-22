@@ -454,4 +454,16 @@
 
   - DownMotionNav 등장/퇴장 코드 개선
 
+  - next build 오류 해결
+    - next lint 재설정
+    : eslint.config.mjs
+
+    - 이미지 최적화 필요 오류 예외 처리 
+
+    - any 타입 오류 예외 처리 
+
+    - next path 오류 수정
+
+    - github actions 환경 변수 설정
+
 <-- -->
