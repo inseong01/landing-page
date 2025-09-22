@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import ProductLogo from "@/components/product-logo/logo-index";
 
 type ProjectOverviewProps = {

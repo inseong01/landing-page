@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 export default function TabletDevice({
   src,
   alt,

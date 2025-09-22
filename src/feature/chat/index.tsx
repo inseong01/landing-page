@@ -153,7 +153,7 @@ export default function ChatApp() {
     return () => {
       MY_CHANNEL.unsubscribe();
     };
-  }, [reconnection]);
+  }, [ID, NAME, reconnection]);
 
   const visitorReceivedMsgCount = visitorState.messages.reduce((acc, msg) => {
     return acc + (!msg.payload.isRead && msg.payload.id !== ID ? 1 : 0);
