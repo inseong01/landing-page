@@ -35,7 +35,7 @@ export default function ChatRoomDisplay() {
     return () => {
       window.removeEventListener("visibilitychange", readMessagesIfVisible);
     };
-  }, [reducer]);
+  }, [reducer, toggleReconnection]);
 
   const isOnline = adminStatus.isOnline;
   const isTyping = adminStatus.isTyping;

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import MoveWindowSvgIcon from "./section-window-icon";
 
 export default function ProjectList({

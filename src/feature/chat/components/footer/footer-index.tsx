@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useState, type ChangeEvent } from "react";
 
 import { supabase } from "../../util/supabase/supabase-client";
