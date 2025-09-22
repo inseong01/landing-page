@@ -466,4 +466,6 @@
 
     - github actions 환경 변수 설정
 
+  - .gitignore 수정 
+
 <-- -->
