@@ -462,4 +462,8 @@
 
     - any 타입 오류 예외 처리 
 
+    - next path 오류 수정
+
+    - github actions 환경 변수 설정
+
 <-- -->
