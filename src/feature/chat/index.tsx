@@ -26,6 +26,9 @@ import ChatRoomDisplay from "./mode/visitor/visitor-index";
 
 import ChattingAppIcon from "./components/icon/icon-index";
 
+let ID = USER_ID;
+let NAME = NICK_NAME;
+
 export default function ChatApp() {
   const [isIconClicked, setIconClick] = useState(false);
   const [visitorState, visitorDispatch] = useReducer(
@@ -35,8 +38,11 @@ export default function ChatApp() {
   const reconnection = useAtomValue(reconnectionAtom);
   const isAppOpenedRef = useRef(isIconClicked);
 
-  const ID = localStorage.getItem("user_id") ?? USER_ID;
-  const NAME = localStorage.getItem("user_name") ?? NICK_NAME;
+  if (typeof window !== "undefined") {
+    const user = JSON.parse(localStorage.getItem("user"));
+    ID = user?.id ?? USER_ID;
+    NAME = user?.name ?? NICK_NAME;
+  }
 
   useEffect(() => {
     isAppOpenedRef.current = isIconClicked;
@@ -63,8 +69,7 @@ export default function ChatApp() {
         },
       });
 
-    localStorage.setItem("user_id", ID);
-    localStorage.setItem("user_name", NAME);
+    localStorage.setItem("user", JSON.stringify({ id: ID, name: NAME }));
 
     MY_CHANNEL
       /* 데이터 송수신 */
