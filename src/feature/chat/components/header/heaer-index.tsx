@@ -1,8 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { useContext } from "react";
 
 import { SetIconClickContext } from "../../util/context/global";
-
-import ICON_CLOSE from "@/feature/chat/assets/icon-close.svg";
 
 export default function ChatHeader({
   chatroomTitle = "환영합니다",
